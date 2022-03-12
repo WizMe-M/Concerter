@@ -1,0 +1,29 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:Concerter.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="Concerter.Views.AuthorizationView">
+    <Grid Margin="10" RowDefinitions="* * *">
+        <TextBox Text="{Binding  Email}"
+                 Watermark="Электронная почта"
+                 Grid.Row="0"
+                 Height="50"
+                 Width="300"
+                 VerticalAlignment="Bottom" />
+
+        <TextBox Text="{Binding Password}"
+                 Watermark="Пароль"
+                 PasswordChar="*"
+                 Grid.Row="1"
+                 Height="50"
+                 Width="300" />
+        
+        <Button Content="Авторизоваться"
+                Command="{Binding Authorize}"
+                Grid.Row="2"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Top" />
+    </Grid>
+</UserControl>

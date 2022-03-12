@@ -1,0 +1,14 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:Concerter.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="600" d:DesignHeight="200"
+             x:Class="Concerter.Views.HeaderView">
+    <StackPanel Margin="20" Orientation="Horizontal" Spacing="40">
+        <Button Content="Выйти из аккаунта"
+                HorizontalAlignment="Right" />
+        <Button Content="Профиль"
+                HorizontalAlignment="Left" />
+    </StackPanel>
+</UserControl>
