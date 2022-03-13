@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AvaloniaProject">
+    <option name="projectPerEditor">
+      <map>
+        <entry key="Concerter/App.axaml" value="Concerter/Concerter.csproj" />
+        <entry key="Concerter/Views/AuthorizationView.axaml" value="Concerter/Concerter.csproj" />
+        <entry key="Concerter/Views/DialogErrorWindow.axaml" value="Concerter/Concerter.csproj" />
+        <entry key="Concerter/Views/EventList.axaml" value="Concerter/Concerter.csproj" />
+        <entry key="Concerter/Views/EventListView.axaml" value="Concerter/Concerter.csproj" />
+        <entry key="Concerter/Views/EventTickets.axaml" value="Concerter/Concerter.csproj" />
+        <entry key="Concerter/Views/EventTicketsView.axaml" value="Concerter/Concerter.csproj" />
+        <entry key="Concerter/Views/EventView.axaml" value="Concerter/Concerter.csproj" />
+        <entry key="Concerter/Views/HeaderView.axaml" value="Concerter/Concerter.csproj" />
+        <entry key="Concerter/Views/MainWindow.axaml" value="Concerter/Concerter.csproj" />
+        <entry key="Concerter/Views/MyEventView.axaml" value="Concerter/Concerter.csproj" />
+        <entry key="Concerter/Views/MyEventsView.axaml" value="Concerter/Concerter.csproj" />
+      </map>
+    </option>
+  </component>
+</project>

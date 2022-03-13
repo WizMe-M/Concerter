@@ -25,11 +25,17 @@ public class AuthorizationViewModel : ViewModelBase
         //         AuthorizedUser = await User.SearchAsync(Email!, Password!);
         //     },
         //     canExecute);
-        Authorize = ReactiveCommand.Create(() => new User()
+        Authorize = ReactiveCommand.Create(() =>
         {
-            Id = 42,
-            Email = Email!,
-            Password = Password!
+            var user = User.Search(Email!, Password!);
+            Debug.WriteLine($"Result search: user id is {user?.Id}");
+            return user;
+            // return new User()
+            // {
+            //     Id = 42,
+            //     Email = Email!,
+            //     Password = Password!
+            // };
         }, canExecute);
     }
 
@@ -39,5 +45,5 @@ public class AuthorizationViewModel : ViewModelBase
     [Reactive]
     public string Password { get; set; }
 
-    public ReactiveCommand<Unit, User> Authorize { get; }
+    public ReactiveCommand<Unit, User?> Authorize { get; }
 }

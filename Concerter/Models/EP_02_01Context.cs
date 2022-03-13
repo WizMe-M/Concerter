@@ -131,6 +131,7 @@ namespace Concerter.Models
                 entity.HasOne(d => d.Impresario)
                     .WithMany(p => p.Events)
                     .HasForeignKey(d => d.ImpresarioId)
+                    .IsRequired(false)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("fk_events_impresario_id");
 
