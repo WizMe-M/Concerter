@@ -13,10 +13,7 @@ namespace Concerter.ViewModels
         public MainWindowViewModel()
         {
             var viewmodel = new AuthorizationViewModel();
-            // viewmodel.WhenAnyValue(model => model.AuthorizedUser)
-            //     .Subscribe(x => Debug.WriteLine(x?.Id ?? -1));
             viewmodel.Authorize
-                // .Take(1)
                 .Subscribe(async model =>
                 {
                     Debug.WriteLine($"{model?.Id} - [{model?.Email} ~ {model?.Password}]");
@@ -27,28 +24,6 @@ namespace Concerter.ViewModels
 
         [Reactive]
         public ViewModelBase Content { get; set; }
-
-        private void Authorize(User? user)
-        {
-            if (user is null)
-            {
-                // ShowError("Пользователь с такими данными отсутствует в базе данных");
-                Debug.WriteLine("Пользователь с такими данными отсутствует в базе данных");
-                return;
-            }
-
-            Debug.WriteLine("Пользователь авторизован");
-            var role = Role.AuthorizeUser(user.RoleId);
-            Debug.WriteLine($"Роль пользователя: {role}");
-            switch (role)
-            {
-                case RoleAccess.Cashier:
-                    var enumerable = Event.GetEvents();
-                    Content = new EventTicketsViewModel(enumerable);
-                    break;
-                default: throw new NotImplementedException();
-            }
-        }
 
         private async Task AuthorizeAsync(User? user)
         {

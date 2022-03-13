@@ -19,23 +19,11 @@ public class AuthorizationViewModel : ViewModelBase
                 !string.IsNullOrWhiteSpace(email)
                 && !string.IsNullOrWhiteSpace(password));
 
-        // Authorize = ReactiveCommand.CreateFromTask(
-        //     async () =>
-        //     {
-        //         AuthorizedUser = await User.SearchAsync(Email!, Password!);
-        //     },
-        //     canExecute);
-        Authorize = ReactiveCommand.Create(() =>
+        Authorize = ReactiveCommand.CreateFromTask(async () =>
         {
-            var user = User.Search(Email!, Password!);
+            var user = await User.SearchAsync(Email!, Password!);
             Debug.WriteLine($"Result search: user id is {user?.Id}");
             return user;
-            // return new User()
-            // {
-            //     Id = 42,
-            //     Email = Email!,
-            //     Password = Password!
-            // };
         }, canExecute);
     }
 
