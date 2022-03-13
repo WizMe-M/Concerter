@@ -1,5 +1,6 @@
 ﻿using System;
 using Concerter.Models;
+using ReactiveUI.Fody.Helpers;
 
 namespace Concerter.ViewModels;
 
@@ -37,19 +38,27 @@ public class EventViewModel : ViewModelBase
         Address = @event.CulturalBuilding.Address;
     }
 
-    public int Id { get; }
+    [Reactive]
+    public int Id { get; set; }
 
+    [Reactive]
     public string EventName { get; set; }
     
+    [Reactive]
     public string Genre { get; set; }
     
+    [Reactive]
     public decimal Cost { get; set; }
 
+    [Reactive]
     public string? Description { get; set; }
     
+    [Reactive]
     public DateTime EventDateAndTime { get; set; }
 
+    [Reactive]
     public string CultureBuilding { get; set; }
     
+    [Reactive]
     public string Address { get; set; }
 }

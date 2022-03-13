@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Concerter.Models;
-using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
 
 namespace Concerter.ViewModels;
@@ -17,10 +16,22 @@ public class EventListViewModel : ViewModelBase
         }
     }
 
+    /// <summary>
+    /// Для отображения в предпросмотре View
+    /// </summary>
+    public EventListViewModel()
+    {
+        var enumerable = Event.GetEvents();
+        foreach (var @event in enumerable)
+        {
+            AllEvents.Add(new EventViewModel(@event));
+        }
+    }
+
     public ObservableCollection<EventViewModel> AllEvents { get; } = new();
 
-    public IEnumerable<EventViewModel> SelectedDateEvents { get; set; }
+    // public IEnumerable<EventViewModel> SelectedDateEvents { get; set; }
 
     [Reactive]
-    public DateTime SelectedDate { get; set; }
+    public DateTime SelectedDate { get; set; } = DateTime.Today;
 }

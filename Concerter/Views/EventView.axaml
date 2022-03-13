@@ -5,9 +5,9 @@
              xmlns:vm="clr-namespace:Concerter.ViewModels"
              mc:Ignorable="d" d:DesignWidth="1200" d:DesignHeight="300"
              x:Class="Concerter.Views.EventView">
-    <UserControl.DataContext>
+    <Design.DataContext>
         <vm:EventViewModel />
-    </UserControl.DataContext>
+    </Design.DataContext>
 
     <UserControl.Styles>
         <Style Selector="TextBlock">

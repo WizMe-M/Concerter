@@ -47,7 +47,10 @@ namespace Concerter.Models
         public static IEnumerable<Event> GetEvents()
         {
             using var context = new EP_02_01Context();
-            context.Events.Load();
+            context.Events
+                .Include(@event => @event.Genre)
+                .Include(@event => @event.CulturalBuilding)
+                .Load();
             return context.Events.ToList();
         }
     }
