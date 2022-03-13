@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace Concerter.Models
 {
@@ -21,7 +24,7 @@ namespace Concerter.Models
         public int TypeId { get; set; }
         public int GenreId { get; set; }
         public int StatusId { get; set; }
-        public int ImpresarioId { get; set; }
+        public int? ImpresarioId { get; set; }
 
         public virtual CulturalBuilding CulturalBuilding { get; set; } = null!;
         public virtual Genre Genre { get; set; } = null!;
@@ -30,5 +33,22 @@ namespace Concerter.Models
         public virtual Type Type { get; set; } = null!;
         public virtual ICollection<ParticipatingArtist> ParticipatingArtists { get; set; }
         public virtual ICollection<Ticket> Tickets { get; set; }
+
+        public static async Task<IEnumerable<Event>> GetEventsAsync()
+        {
+            await using var context = new EP_02_01Context();
+            await context.Events
+                .Include(@event => @event.Genre)
+                .Include(@event => @event.CulturalBuilding)
+                .LoadAsync();
+            return await context.Events.ToListAsync();
+        }
+
+        public static IEnumerable<Event> GetEvents()
+        {
+            using var context = new EP_02_01Context();
+            context.Events.Load();
+            return context.Events.ToList();
+        }
     }
 }

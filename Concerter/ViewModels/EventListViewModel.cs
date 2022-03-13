@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Concerter.Models;
 using ReactiveUI;
+using ReactiveUI.Fody.Helpers;
 
 namespace Concerter.ViewModels;
 
 public class EventListViewModel : ViewModelBase
 {
-    private DateTime _selectedDate;
-
     public EventListViewModel(IEnumerable<Event> events)
     {
         foreach (var @event in events)
@@ -20,11 +19,8 @@ public class EventListViewModel : ViewModelBase
 
     public ObservableCollection<EventViewModel> AllEvents { get; } = new();
 
-    public DateTime SelectedDate
-    {
-        get => _selectedDate;
-        set => this.RaiseAndSetIfChanged(ref _selectedDate, value);
-    }
-
     public IEnumerable<EventViewModel> SelectedDateEvents { get; set; }
+
+    [Reactive]
+    public DateTime SelectedDate { get; set; }
 }
