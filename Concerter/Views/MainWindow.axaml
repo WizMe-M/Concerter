@@ -17,7 +17,7 @@
     <Window.DataContext>
         <vm:MainWindowViewModel />
     </Window.DataContext>
-    
+
     <Window.Resources>
         <converters:AuthorizationConverter x:Key="IsAuthorized" />
     </Window.Resources>
@@ -34,8 +34,8 @@
         <!-- </ExperimentalAcrylicBorder> -->
 
         <DockPanel Margin="40">
-            <v:HeaderView DockPanel.Dock="Top" IsVisible="{Binding Content, 
-            Converter={StaticResource IsAuthorized}}" />
+            <ContentPresenter DockPanel.Dock="Top"
+                              Content="{Binding Header}" />
             <ContentPresenter Content="{Binding Content}" />
         </DockPanel>
     </Panel>

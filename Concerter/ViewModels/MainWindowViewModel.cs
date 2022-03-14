@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
-using System.Reactive.Linq;
 using System.Threading.Tasks;
 using Concerter.Models;
-using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
 
 namespace Concerter.ViewModels
@@ -12,15 +10,25 @@ namespace Concerter.ViewModels
     {
         public MainWindowViewModel()
         {
-            var viewmodel = new AuthorizationViewModel();
-            viewmodel.Authorize
-                .Subscribe(async model =>
+            Header = new HeaderViewModel();
+            Header.LogOut
+                .Execute()
+                .Subscribe(viewmodel =>
                 {
-                    Debug.WriteLine($"{model?.Id} - [{model?.Email} ~ {model?.Password}]");
-                    await AuthorizeAsync(model);
+                    viewmodel.Authorize
+                        .Subscribe(async model =>
+                        {
+                            Debug.WriteLine($"{model?.Id} - [{model?.Email} ~ {model?.Password}]");
+                            await AuthorizeAsync(model);
+                        });
+                    Content = viewmodel;
                 });
-            Content = viewmodel;
+            Header.Profile
+                .Subscribe(viewmodel => { Content = viewmodel; });
         }
+
+        [Reactive]
+        public HeaderViewModel Header { get; set; }
 
         [Reactive]
         public ViewModelBase Content { get; set; }

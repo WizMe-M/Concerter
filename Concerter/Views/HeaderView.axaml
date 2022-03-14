@@ -4,7 +4,11 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="clr-namespace:Concerter.ViewModels"
              mc:Ignorable="d" d:DesignWidth="600" d:DesignHeight="200"
-             x:Class="Concerter.Views.HeaderView">
+             x:Class="Concerter.Views.HeaderView"
+             IsVisible="{Binding !!AuthorizedUser}">
+    <UserControl.DataContext>
+        <vm:HeaderViewModel />
+    </UserControl.DataContext>
     <StackPanel Margin="20" Orientation="Horizontal" Spacing="40">
         <Button Content="Выйти из аккаунта"
                 HorizontalAlignment="Right" />
