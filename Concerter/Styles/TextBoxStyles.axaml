@@ -1,0 +1,23 @@
+﻿<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Design.PreviewWith>
+        <Border Padding="20">
+            <TextBox />
+        </Border>
+    </Design.PreviewWith>
+
+    <Style Selector="TextBox">
+        <Setter Property="Width" Value="300" />
+        <Setter Property="Height" Value="50" />
+        <Setter Property="HorizontalContentAlignment" Value="Left" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="FontSize" Value="18" />
+    </Style>
+
+    <Style Selector="TextBox.pwd">
+        <Setter Property="PasswordChar" Value="*" />
+        <Setter Property="Watermark" Value="Пароль" />
+        <Setter Property="FontSize" Value="21" />
+    </Style>
+
+</Styles>

@@ -3,10 +3,11 @@
              xmlns:local="using:Concerter"
              x:Class="Concerter.App">
     <Application.DataTemplates>
-        <local:ViewLocator/>
+        <local:ViewLocator />
     </Application.DataTemplates>
 
     <Application.Styles>
-        <FluentTheme Mode="Light"/>
+        <FluentTheme Mode="Light" />
+        <StyleInclude Source="avares://Concerter/Styles/TextBoxStyles.axaml" />
     </Application.Styles>
 </Application>
