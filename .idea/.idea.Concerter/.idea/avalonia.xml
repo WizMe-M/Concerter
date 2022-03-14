@@ -6,6 +6,7 @@
         <entry key="Concerter/App.axaml" value="Concerter/Concerter.csproj" />
         <entry key="Concerter/Styles/TextBoxStyles.axaml" value="Concerter/Concerter.csproj" />        
         <entry key="Concerter/Views/AuthorizationView.axaml" value="Concerter/Concerter.csproj" />
+        <entry key="Concerter/Views/ChangePasswordView.axaml" value="Concerter/Concerter.csproj" />
         <entry key="Concerter/Views/DialogErrorWindow.axaml" value="Concerter/Concerter.csproj" />
         <entry key="Concerter/Views/EventList.axaml" value="Concerter/Concerter.csproj" />
         <entry key="Concerter/Views/EventListView.axaml" value="Concerter/Concerter.csproj" />
@@ -16,6 +17,7 @@
         <entry key="Concerter/Views/MainWindow.axaml" value="Concerter/Concerter.csproj" />
         <entry key="Concerter/Views/MyEventView.axaml" value="Concerter/Concerter.csproj" />
         <entry key="Concerter/Views/MyEventsView.axaml" value="Concerter/Concerter.csproj" />
+        <entry key="Concerter/Views/MyProfileView.axaml" value="Concerter/Concerter.csproj" />
       </map>
     </option>
   </component>
