@@ -4,10 +4,11 @@
     <option name="projectPerEditor">
       <map>
         <entry key="Concerter/App.axaml" value="Concerter/Concerter.csproj" />
-        <entry key="Concerter/Styles/TextBoxStyles.axaml" value="Concerter/Concerter.csproj" />        
+        <entry key="Concerter/Styles/TextBoxStyles.axaml" value="Concerter/Concerter.csproj" />
         <entry key="Concerter/Views/AuthorizationView.axaml" value="Concerter/Concerter.csproj" />
         <entry key="Concerter/Views/ChangePasswordView.axaml" value="Concerter/Concerter.csproj" />
         <entry key="Concerter/Views/DialogErrorWindow.axaml" value="Concerter/Concerter.csproj" />
+        <entry key="Concerter/Views/EventInfoView.axaml" value="Concerter/Concerter.csproj" />
         <entry key="Concerter/Views/EventList.axaml" value="Concerter/Concerter.csproj" />
         <entry key="Concerter/Views/EventListView.axaml" value="Concerter/Concerter.csproj" />
         <entry key="Concerter/Views/EventTickets.axaml" value="Concerter/Concerter.csproj" />
