@@ -7,36 +7,54 @@ namespace Concerter.ViewModels;
 
 public class MyProfileViewModel : ViewModelBase
 {
-    public readonly string[] _buttonTexts = new[]
-    {
-        "Редактировать профиль",
-        "Сохранить изменения"
-    };
+    private readonly ObservableAsPropertyHelper<string> _editOrSaveText;
+    private readonly User _userProfile;
 
     /// <summary>
     /// Для отображения в предпросмотре View
     /// </summary>
     public MyProfileViewModel()
     {
-        EditOrSaveText = _buttonTexts[0];
         this.WhenAnyValue(model => model.EditMode,
-                value => value ? _buttonTexts[1] : _buttonTexts[0])
-            .ToProperty(this, EditOrSaveText);
-        
-        EditMode = false;
+                mode => mode ? "Сохранить изменения" : "Редактировать профиль")
+            .ToProperty(this, nameof(EditOrSaveText), out _editOrSaveText);
 
+        EditMode = true;
+        EditMode = false;
+        _userProfile = new User();
         Email = "test@mail.ru";
         LastName = "Иванов";
         FirstName = "Иван";
         MiddleName = "Иванович";
         Password = "P@ssw0rd";
-        ChangePassword = ReactiveCommand.Create(() => { });
-        SwitchEditMode = ReactiveCommand.Create(() => { EditMode = !EditMode; });
+
+        ChangePassword = ReactiveCommand.Create(() => 
+            new ChangePasswordViewModel(_userProfile));
+        SwitchEditMode = ReactiveCommand.CreateFromTask(async () =>
+        {
+            EditMode = !EditMode;
+            if (!EditMode)
+            {
+                _userProfile.FirstName = FirstName;
+                _userProfile.LastName = LastName;
+                _userProfile.MiddleName = MiddleName;
+
+                await _userProfile.SaveAsync();
+            }
+        });
+        Back = ReactiveCommand.Create(() => _userProfile);
     }
 
-    public MyProfileViewModel(User user)
+    public MyProfileViewModel(User user) : this()
     {
-        throw new System.NotImplementedException();
+        EditMode = false;
+
+        _userProfile = user;
+        Email = _userProfile.Email;
+        LastName = _userProfile.LastName;
+        FirstName = _userProfile.FirstName;
+        MiddleName = _userProfile.MiddleName;
+        Password = _userProfile.Password;
     }
 
     [Reactive]
@@ -54,13 +72,14 @@ public class MyProfileViewModel : ViewModelBase
     [Reactive]
     public string Password { get; set; }
 
-    public ReactiveCommand<Unit, Unit> ChangePassword { get; }
+    public ReactiveCommand<Unit, ChangePasswordViewModel> ChangePassword { get; }
 
     [Reactive]
     public bool EditMode { get; set; }
 
     public ReactiveCommand<Unit, Unit> SwitchEditMode { get; }
 
-    [Reactive]
-    public string EditOrSaveText { get; set; }
+    public string EditOrSaveText => _editOrSaveText.Value;
+
+    public ReactiveCommand<Unit, User> Back { get; }
 }

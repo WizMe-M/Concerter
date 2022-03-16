@@ -36,8 +36,16 @@ namespace Concerter.Models
         public static async Task<User?> SearchAsync(string email, string password)
         {
             await using var database = new EP_02_01Context();
-            var user = await database.Users.FirstOrDefaultAsync(user => user.Email == email && user.Password == password);
+            var user = await database.Users.FirstOrDefaultAsync(
+                user => user.Email == email && user.Password == password);
             return user;
+        }
+
+        public async Task SaveAsync()
+        {
+            await using var context = new EP_02_01Context();
+            context.Users.Update(this);
+            await context.SaveChangesAsync();
         }
     }
 }

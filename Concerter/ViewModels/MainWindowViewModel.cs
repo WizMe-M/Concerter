@@ -12,19 +12,12 @@ namespace Concerter.ViewModels
         {
             Header = new HeaderViewModel();
             Header.LogOut
-                .Execute()
-                .Subscribe(viewmodel =>
-                {
-                    viewmodel.Authorize
-                        .Subscribe(async model =>
-                        {
-                            Debug.WriteLine($"{model?.Id} - [{model?.Email} ~ {model?.Password}]");
-                            await AuthorizeAsync(model);
-                        });
-                    Content = viewmodel;
-                });
+                .Subscribe(ShowAuthorization);
+
             Header.Profile
-                .Subscribe(viewmodel => { Content = viewmodel; });
+                .Subscribe(ShowMyProfile);
+
+            ShowAuthorization(new AuthorizationViewModel());
         }
 
         [Reactive]
@@ -32,6 +25,33 @@ namespace Concerter.ViewModels
 
         [Reactive]
         public ViewModelBase Content { get; set; }
+
+        private void ShowAuthorization(AuthorizationViewModel viewmodel)
+        {
+            viewmodel.Authorize
+                .Subscribe(async model =>
+                {
+                    Debug.WriteLine($"{model?.Id} - [{model?.Email} ~ {model?.Password}]");
+                    await AuthorizeAsync(model);
+                });
+            Content = viewmodel;
+        }
+
+        private void ShowMyProfile(MyProfileViewModel viewModel)
+        {
+            viewModel.ChangePassword
+                .Subscribe(ShowChangePassword);
+            viewModel.Back
+                .Subscribe(async user => await AuthorizeAsync(user));
+            Content = viewModel;
+        }
+
+        private void ShowChangePassword(ChangePasswordViewModel viewModel)
+        {
+            viewModel.SaveChangedPassword
+                .Subscribe(async user => await AuthorizeAsync(user));
+            Content = viewModel;
+        }
 
         private async Task AuthorizeAsync(User? user)
         {
@@ -42,6 +62,7 @@ namespace Concerter.ViewModels
                 return;
             }
 
+            Header.AuthorizedUser = user;
             Debug.WriteLine("Пользователь авторизован");
             var role = Role.AuthorizeUser(user.RoleId);
             Debug.WriteLine($"Роль пользователя: {role}");
