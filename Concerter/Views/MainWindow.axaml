@@ -18,25 +18,14 @@
         <vm:MainWindowViewModel />
     </Window.DataContext>
 
-    <Window.Resources>
-        <converters:AuthorizationConverter x:Key="IsAuthorized" />
-    </Window.Resources>
-
     <Panel>
-        <!-- <ExperimentalAcrylicBorder IsHitTestVisible="False"> -->
-        <!--     <ExperimentalAcrylicBorder.Material> -->
-        <!--         <ExperimentalAcrylicMaterial -->
-        <!--             BackgroundSource="Digger" -->
-        <!--             TintColor="Black" -->
-        <!--             TintOpacity="0.8" -->
-        <!--             MaterialOpacity="0.65" /> -->
-        <!--     </ExperimentalAcrylicBorder.Material> -->
-        <!-- </ExperimentalAcrylicBorder> -->
-
         <DockPanel Margin="40">
-            <ContentPresenter DockPanel.Dock="Top"
-                              Content="{Binding Header}" />
-            <ContentPresenter Content="{Binding Content}" />
+            <ContentControl 
+                Content="{Binding Header}"
+                DockPanel.Dock="Top" />
+            
+            <ContentControl 
+                Content="{Binding Content}" />
         </DockPanel>
     </Panel>
 </Window>

@@ -3,16 +3,31 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="clr-namespace:Concerter.ViewModels"
+             xmlns:conv="clr-namespace:Concerter.Converters"
              mc:Ignorable="d" d:DesignWidth="600" d:DesignHeight="200"
-             x:Class="Concerter.Views.HeaderView"
-             IsVisible="{Binding !!AuthorizedUser}">
-    <UserControl.DataContext>
+             x:Class="Concerter.Views.HeaderView">
+
+    <Design.DataContext>
         <vm:HeaderViewModel />
-    </UserControl.DataContext>
+    </Design.DataContext>
+
+    <UserControl.Resources>
+        <conv:NotProfileConverter x:Key="NotProfile" />
+    </UserControl.Resources>
+
+    <UserControl.IsVisible>
+        <MultiBinding Converter="{x:Static BoolConverters.And}">
+            <Binding Path="AuthorizedUser" Converter="{x:Static ObjectConverters.IsNotNull}" />
+            <Binding Path="$parent[Window].DataContext.Content" Converter="{StaticResource NotProfile}" />
+        </MultiBinding>
+    </UserControl.IsVisible>
+
     <StackPanel Margin="20" Orientation="Horizontal" Spacing="40">
         <Button Content="Выйти из аккаунта"
+                Command="{Binding LogOut}"
                 HorizontalAlignment="Right" />
         <Button Content="Профиль"
+                Command="{Binding Profile}"
                 HorizontalAlignment="Left" />
     </StackPanel>
 </UserControl>
