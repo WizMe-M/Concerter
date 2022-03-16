@@ -21,7 +21,8 @@ public class EventViewModel : ViewModelBase
                       "Adrenaline Stadium. Присоединяйтесь! ;)";
         Genre = "Рок-н-Ролл";
         Cost = 200;
-        EventDateAndTime = new DateTime(2022, 3, 8, 14, 30, 0);
+        Date = DateOnly.FromDateTime(DateTime.Today);
+        Time = TimeOnly.FromDateTime(DateTime.Now);
         CultureBuilding = "Adrenaline Stadium";
         Address = "Москва, Ленинградский просп., 80, корп. 17";
     }
@@ -33,7 +34,8 @@ public class EventViewModel : ViewModelBase
         Description = @event.Description;
         Cost = @event.Cost;
         Genre = @event.Genre.Name;
-        EventDateAndTime = @event.Date.ToDateTime(@event.Time);
+        Date = @event.Date;
+        Time = @event.Time;
         CultureBuilding = @event.CulturalBuilding.Name;
         Address = @event.CulturalBuilding.Address;
     }
@@ -43,22 +45,25 @@ public class EventViewModel : ViewModelBase
 
     [Reactive]
     public string EventName { get; set; }
-    
+
     [Reactive]
     public string Genre { get; set; }
-    
+
     [Reactive]
     public decimal Cost { get; set; }
 
     [Reactive]
     public string? Description { get; set; }
-    
+
     [Reactive]
-    public DateTime EventDateAndTime { get; set; }
+    public DateOnly Date { get; set; }
+
+    [Reactive]
+    public TimeOnly Time { get; set; }
 
     [Reactive]
     public string CultureBuilding { get; set; }
-    
+
     [Reactive]
     public string Address { get; set; }
 }
