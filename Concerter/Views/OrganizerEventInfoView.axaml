@@ -1,0 +1,47 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="900" d:DesignHeight="450"
+             x:Class="Concerter.Views.OrganizerEventInfoView">
+    <UserControl.Styles>
+        <Style Selector="TextBox">
+            <Setter Property="Width" Value="200" />
+        </Style>
+    </UserControl.Styles>
+
+    <DockPanel Name="OrganizerUI">
+        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Spacing="20">
+            <TextBox Text="{Binding Name}" />
+            <NumericUpDown Watermark="Стоимость билета"
+                           Value="{Binding Price}"
+                           ClipValueToMinMax="True"
+                           ParsingNumberStyle="Integer"
+                           Increment="5"
+                           Minimum="100"
+                           Maximum="1000000000" />
+            <DatePicker />
+        </StackPanel>
+        <StackPanel DockPanel.Dock="Bottom" Spacing="30">
+            <StackPanel Orientation="Horizontal" Spacing="20">
+                <ComboBox Items="{Binding Genres}" PlaceholderText="Выберите жанр" />
+                <ComboBox Items="{Binding CulturalBuildings}" PlaceholderText="Выберите место проведения" />
+            </StackPanel>
+            <UniformGrid Rows="1" Columns="3">
+                <Button Content="Назначить импресарио" />
+                <Button Content="Изменить мероприятие" />
+                <Button Content="Удалить мероприятие" />
+
+            </UniformGrid>
+            <StackPanel Orientation="Horizontal" Spacing="20">
+                <Button Content="Сменить статус" />
+                <Button Content="Назад" />
+            </StackPanel>
+        </StackPanel>
+        <TextBox Text="{Binding Description}"
+                 HorizontalAlignment="Stretch"
+                 VerticalAlignment="Stretch"
+                 HorizontalContentAlignment="Left"
+                 VerticalContentAlignment="Top" />
+    </DockPanel>
+</UserControl>

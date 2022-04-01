@@ -11,23 +11,79 @@
 
     <!-- Отсутствует дизайн  -->
 
-    <DockPanel>
-        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Spacing="20">
-            <TextBlock Text="{Binding Name}" />
-            <TextBlock Text="{Binding Price}" />
-            <TextBlock Text="{Binding CountLeftTickets}" />
-        </StackPanel>
-        <DockPanel DockPanel.Dock="Bottom">
-            <UniformGrid DockPanel.Dock="Bottom" Rows="1" Columns="3">
-                <Button Content="Продать билеты" />
-                <Button Content="Вернуть билеты" />
-                <Button Content="Назад" />
-            </UniformGrid>
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Text="{Binding CulturalBinding}" />
-                <TextBlock Text="{Binding Address}" />
+    <Panel Margin="10">
+        <!-- Cashier -->
+        <DockPanel Name="CashierUI" IsVisible="False">
+            <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Spacing="20">
+                <TextBlock Text="{Binding Name}" />
+                <TextBlock Text="{Binding Price}" />
+                <TextBlock Text="{Binding CountLeftTickets}" />
             </StackPanel>
+            <DockPanel DockPanel.Dock="Bottom">
+                <UniformGrid DockPanel.Dock="Bottom" Rows="1" Columns="3">
+                    <Button Content="Продать билеты" />
+                    <Button Content="Вернуть билеты" />
+                    <Button Content="Назад" />
+                </UniformGrid>
+                <TextBlock>
+                    <TextBlock.Text>
+                        <MultiBinding StringFormat="{}{0} по адресу {1}">
+                            <Binding Path="CulturalBinding" />
+                            <Binding Path="Address" />
+                        </MultiBinding>
+                    </TextBlock.Text>
+                </TextBlock>
+            </DockPanel>
+            <TextBlock Text="{Binding Description}" />
         </DockPanel>
-        <TextBlock Text="{Binding Description}" />
-    </DockPanel>
+
+        <DockPanel Name="ArtistUI" IsVisible="False">
+            <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Spacing="20">
+                <TextBlock Text="{Binding Name}" />
+                <TextBlock Text="{Binding Impreasario, StringFormat={}Импресарио: {0}}" />
+                <TextBlock Text="{Binding Price}" />
+            </StackPanel>
+            <DockPanel DockPanel.Dock="Bottom">
+                <StackPanel Orientation="Vertical" DockPanel.Dock="Left">
+                    <TextBlock Text="{Binding CulturalBinding}" />
+                    <TextBlock Text="{Binding Address}" />
+                    <Button Content="Назад" />
+                </StackPanel>
+                <Panel>
+                    <ItemsControl Items="{Binding Artists}" />
+                    <TextBlock Text="Список артистов пуст"
+                               IsVisible="{Binding !Artists.Count}"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center" />
+                </Panel>
+            </DockPanel>
+            <TextBlock Text="{Binding Description}" />
+        </DockPanel>
+
+        <DockPanel Name="ImpresarioUI" IsVisible="True">
+            <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Spacing="20">
+                <TextBlock Text="{Binding Name}" />
+                <TextBlock Text="{Binding CountLeftTickets, StringFormat={}Осталось билетов: {0}}" />
+            </StackPanel>
+            <DockPanel>
+                <ListBox DockPanel.Dock="Right"
+                         Items="{Binding Artists}"
+                         Width="250" />
+                <DockPanel>
+                    <StackPanel Spacing="20" DockPanel.Dock="Bottom">
+                        <TextBlock Text="{Binding CulturalBinding}" />
+                        <TextBlock Text="{Binding Address}" />
+                        <UniformGrid Rows="1" Columns="3">
+                            <Button Content="Назад" />
+                            <Button Content="Назначить артистов" />
+                            <Button Content="Наградить артистов" />
+                        </UniformGrid>
+                    </StackPanel>
+                    <TextBlock Text="{Binding Description}" />
+                </DockPanel>
+            </DockPanel>
+        </DockPanel>
+        
+        
+    </Panel>
 </UserControl>
