@@ -5,6 +5,7 @@
       <map>
         <entry key="Concerter/App.axaml" value="Concerter/Concerter.csproj" />
         <entry key="Concerter/Styles/ButtonStyles.axaml" value="Concerter/Concerter.csproj" />
+        <entry key="Concerter/Styles/NumericUpDownStyles.axaml" value="Concerter/Concerter.csproj" />
         <entry key="Concerter/Styles/TextBoxStyles.axaml" value="Concerter/Concerter.csproj" />
         <entry key="Concerter/Views/AuthorizationView.axaml" value="Concerter/Concerter.csproj" />
         <entry key="Concerter/Views/ChangePasswordView.axaml" value="Concerter/Concerter.csproj" />

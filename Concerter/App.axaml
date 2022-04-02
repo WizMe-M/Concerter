@@ -10,5 +10,6 @@
         <FluentTheme Mode="Light" />
         <StyleInclude Source="avares://Concerter/Styles/TextBoxStyles.axaml" />
         <StyleInclude Source="avares://Concerter/Styles/ButtonStyles.axaml" />
+        <StyleInclude Source="avares://Concerter/Styles/NumericUpDownStyles.axaml" />
     </Application.Styles>
 </Application>
