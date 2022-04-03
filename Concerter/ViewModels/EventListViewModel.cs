@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Reactive;
 using Concerter.Models;
+using Microsoft.EntityFrameworkCore;
 using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
 
@@ -15,10 +16,22 @@ public class EventListViewModel : ViewModelBase
 
     public EventListViewModel()
     {
-        SelectedDate = DateTime.Today;
-        this.WhenAnyValue(model => model.SelectedDate,
+        this.WhenAnyValue(
+                model => model.SelectedDate,
                 date => AllEvents.Where(e => e.Date == DateOnly.FromDateTime(date)))
             .ToProperty(this, nameof(SelectedDateEvents), out _selectedDateEvents);
+
+        this.WhenAnyValue(model => model.SelectedEvent)
+            .Subscribe(async viewModel =>
+            {
+                if(viewModel is null) return;
+                
+                await using var database = new EP_02_01Context();
+                var e = await database.Events.FirstOrDefaultAsync(e => e.Id == viewModel.Id);
+                MainWindowViewModel.Window.Content = new EventInfoViewModel(e!);
+            });
+        
+        SelectedDate = DateTime.Today;
 
         Previous = ReactiveCommand.Create(() => { SelectedDate = SelectedDate.AddDays(-1); });
         Next = ReactiveCommand.Create(() => { SelectedDate = SelectedDate.AddDays(1); });
@@ -26,8 +39,8 @@ public class EventListViewModel : ViewModelBase
 
     public EventListViewModel(IEnumerable<Event> events) : this()
     {
-        foreach (var @event in events)
-            AllEvents.Add(new EventViewModel(@event));
+        foreach (var e in events)
+            AllEvents.Add(new EventViewModel(e));
     }
 
     public ObservableCollection<EventViewModel> AllEvents { get; } = new();
@@ -36,7 +49,11 @@ public class EventListViewModel : ViewModelBase
 
     [Reactive]
     public DateTime SelectedDate { get; set; }
+    
+    [Reactive]
+    public EventViewModel SelectedEvent { get; set; }
 
     public ReactiveCommand<Unit, Unit> Previous { get; }
+    
     public ReactiveCommand<Unit, Unit> Next { get; }
 }

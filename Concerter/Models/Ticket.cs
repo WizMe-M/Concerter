@@ -12,5 +12,21 @@ namespace Concerter.Models
         public int EventId { get; set; }
 
         public virtual Event Event { get; set; } = null!;
+
+        //TODO: сделать методы для билетов
+        public static IEnumerable<Ticket> GetClients(Event e)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Return(int ticketCount)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static void Sell(string firstName, string lastName, int ticketCount)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

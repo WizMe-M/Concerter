@@ -10,6 +10,7 @@ namespace Concerter.ViewModels
     {
         public MainWindowViewModel()
         {
+            Window = this;
             Header = new HeaderViewModel();
             Header.LogOut
                 .Subscribe(ShowAuthorization);
@@ -19,6 +20,8 @@ namespace Concerter.ViewModels
 
             ShowAuthorization(new AuthorizationViewModel());
         }
+
+        public static MainWindowViewModel Window { get; private set; }
 
         [Reactive]
         public HeaderViewModel Header { get; set; }

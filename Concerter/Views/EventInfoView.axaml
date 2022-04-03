@@ -9,21 +9,18 @@
         <vm:EventInfoViewModel />
     </Design.DataContext>
 
-    <!-- Отсутствует дизайн  -->
-
     <Panel Margin="10">
-        <!-- Cashier -->
-        <DockPanel Name="CashierUI" IsVisible="False">
+        <DockPanel Name="CashierUI" IsVisible="True">
             <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Spacing="20">
                 <TextBlock Text="{Binding Name}" />
-                <TextBlock Text="{Binding Price}" />
-                <TextBlock Text="{Binding CountLeftTickets}" />
+                <TextBlock Text="{Binding Price, StringFormat={}Стоимость: {0}}" />
+                <TextBlock Text="{Binding CountLeftTickets, StringFormat={}Осталось билетов: {0}}" />
             </StackPanel>
             <DockPanel DockPanel.Dock="Bottom">
                 <UniformGrid DockPanel.Dock="Bottom" Rows="1" Columns="3">
-                    <Button Content="Продать билеты" />
-                    <Button Content="Вернуть билеты" />
-                    <Button Content="Назад" />
+                    <Button Content="Продать билеты" Command="{Binding SellTickets}"/>
+                    <Button Content="Вернуть билеты" Command="{Binding ReturnTickets}"/>
+                    <Button Content="Назад" Command="{Binding Back}"/>
                 </UniformGrid>
                 <TextBlock>
                     <TextBlock.Text>
@@ -60,7 +57,7 @@
             <TextBlock Text="{Binding Description}" />
         </DockPanel>
 
-        <DockPanel Name="ImpresarioUI" IsVisible="True">
+        <DockPanel Name="ImpresarioUI" IsVisible="False">
             <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Spacing="20">
                 <TextBlock Text="{Binding Name}" />
                 <TextBlock Text="{Binding CountLeftTickets, StringFormat={}Осталось билетов: {0}}" />

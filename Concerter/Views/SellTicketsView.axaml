@@ -1,0 +1,36 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:Concerter.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="Concerter.Views.SellTicketsView">
+    <Design.DataContext>
+        <vm:SellTicketsViewModel />
+    </Design.DataContext>
+
+    <DockPanel Margin="100">
+        <StackPanel DockPanel.Dock="Bottom"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Right"
+                    Spacing="40"
+                    Margin="20">
+            <Button Command="{Binding Sell}" Content="Продать" />
+            <Button Command="{Binding Back}" Content="Назад" />
+        </StackPanel>
+        
+        <StackPanel Spacing="20">
+            <TextBox Text="{Binding LastName}"
+                     Watermark="Фамилия" />
+            
+            <TextBox Text="{Binding FirstName}"
+                     Watermark="Имя" />
+            
+            <NumericUpDown Value="{Binding TicketCount}"
+                           Minimum="1"
+                           Maximum="100"
+                           Increment="1"
+                           Watermark="Количество билетов"/>
+        </StackPanel>
+    </DockPanel>
+</UserControl>

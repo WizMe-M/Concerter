@@ -1,0 +1,56 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:Concerter.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="Concerter.Views.ReturnTicketsView">
+    <Design.DataContext>
+        <vm:ReturnTicketsViewModel />
+    </Design.DataContext>
+
+    <DockPanel Margin="100">
+        <StackPanel DockPanel.Dock="Bottom"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Right"
+                    Spacing="30">
+            <Button Command="{Binding Return}" Content="Вернуть" />
+            <Button Command="{Binding Back}" Content="Назад" />
+        </StackPanel>
+
+        <StackPanel Spacing="20">
+            <ComboBox Items="{Binding Clients}"
+                      PlaceholderText="Выберите пользователя"
+                      SelectedItem="{Binding SelectedClient}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock>
+                            <TextBlock.Text>
+                                <Binding Path="SecondName" />
+                                <!-- TODO: пофиксить то что unset накладывается на PlaceholderText и использовать это-->
+                                <!-- <MultiBinding StringFormat="{}{1} {0}"> -->
+                                <!--     <Binding Path="FirstName" /> -->
+                                <!--     <Binding Path="SecondName" /> -->
+                                <!-- </MultiBinding> -->
+                            </TextBlock.Text>
+                        </TextBlock>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+
+            <CheckBox IsChecked="{Binding IsAllTickets}"
+                      IsEnabled="{Binding !!SelectedClient}"
+                      Content="Все билеты"
+                      FontSize="18" />
+
+            <NumericUpDown Value="{Binding TicketCount}"
+                           IsReadOnly="{Binding IsAllTickets}"
+                           Minimum="1"
+                           Maximum="{Binding AllTickets}"
+                           Increment="1"
+                           ClipValueToMinMax="True"
+                           HorizontalAlignment="Left"
+                           IsEnabled="{Binding !!SelectedClient}" />
+        </StackPanel>
+    </DockPanel>
+</UserControl>

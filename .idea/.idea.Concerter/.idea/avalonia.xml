@@ -23,6 +23,8 @@
         <entry key="Concerter/Views/MyEventsView.axaml" value="Concerter/Concerter.csproj" />
         <entry key="Concerter/Views/MyProfileView.axaml" value="Concerter/Concerter.csproj" />
         <entry key="Concerter/Views/OrganizerEventInfoView.axaml" value="Concerter/Concerter.csproj" />
+        <entry key="Concerter/Views/ReturnTicketsView.axaml" value="Concerter/Concerter.csproj" />
+        <entry key="Concerter/Views/SellTicketsView.axaml" value="Concerter/Concerter.csproj" />
       </map>
     </option>
   </component>

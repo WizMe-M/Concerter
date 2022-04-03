@@ -27,19 +27,19 @@ public class EventViewModel : ViewModelBase
         Address = "Москва, Ленинградский просп., 80, корп. 17";
     }
 
-    public EventViewModel(Event @event)
+    public EventViewModel(Event e)
     {
-        Id = @event.Id;
-        EventName = @event.Name;
-        Description = @event.Description;
-        Cost = @event.Cost;
-        Genre = @event.Genre.Name;
-        Date = @event.Date;
-        Time = @event.Time;
-        CultureBuilding = @event.CulturalBuilding.Name;
-        Address = @event.CulturalBuilding.Address;
+        Id = e.Id;
+        EventName = e.Name;
+        Description = e.Description;
+        Cost = e.Cost;
+        Genre = e.Genre.Name;
+        Date = e.Date;
+        Time = e.Time;
+        CultureBuilding = e.CulturalBuilding.Name;
+        Address = e.CulturalBuilding.Address;
     }
-
+    
     [Reactive]
     public int Id { get; set; }
 
