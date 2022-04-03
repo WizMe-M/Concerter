@@ -11,11 +11,14 @@ namespace Concerter.Views
         {
             InitializeComponent();
             this.AttachDevTools();
+            Window = this;
         }
 
         private void InitializeComponent()
         {
             AvaloniaXamlLoader.Load(this);
         }
+        
+        public static MainWindow Window { get; private set; } = null!;
     }
 }

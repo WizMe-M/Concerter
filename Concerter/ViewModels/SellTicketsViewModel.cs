@@ -25,6 +25,7 @@ public class SellTicketsViewModel : ViewModelBase
         FirstName = "Иван";
         LastName = "Иванов";
         TicketCount = 1;
+        
         Sell = ReactiveCommand.Create(() =>
         {
             Ticket.Sell(FirstName, LastName, TicketCount);
@@ -35,12 +36,11 @@ public class SellTicketsViewModel : ViewModelBase
 
         Back = ReactiveCommand.Create(() =>
         {
-            //TODO: сделать переход обратно на информацию о мероприятии
             MainWindowViewModel.Window.Content = new EventInfoViewModel(_event);
         });
     }
 
-    public SellTicketsViewModel(Event e)
+    public SellTicketsViewModel(Event e) : this()
     {
         _event = e;
     }

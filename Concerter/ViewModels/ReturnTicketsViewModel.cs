@@ -46,7 +46,6 @@ public class ReturnTicketsViewModel : ViewModelBase
             model => model.SelectedClient,
             selector: ticket => ticket is not null);
 
-        //TODO: написать код команд для кнопок
         Return = ReactiveCommand.Create(() =>
         {
             SelectedClient!.Return(TicketCount);
@@ -99,10 +98,10 @@ public class ReturnTicketsViewModel : ViewModelBase
 
     public ReactiveCommand<Unit, Unit> Back { get; }
 
-    private void FillComboBox()
+    private async void FillComboBox()
     {
         Clients.Clear();
-        var clients = Ticket.GetClients(_event);
+        var clients = await Ticket.GetClients(_event);
         foreach (var client in clients)
         {
             Clients.Add(client);
