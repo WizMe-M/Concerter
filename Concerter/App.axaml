@@ -11,5 +11,6 @@
         <StyleInclude Source="avares://Concerter/Styles/TextBoxStyles.axaml" />
         <StyleInclude Source="avares://Concerter/Styles/ButtonStyles.axaml" />
         <StyleInclude Source="avares://Concerter/Styles/NumericUpDownStyles.axaml" />
+        <StyleInclude Source="avares://Concerter/Styles/ComboBoxStyles.axaml" />
     </Application.Styles>
 </Application>
