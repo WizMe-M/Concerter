@@ -18,19 +18,20 @@
             <Button Command="{Binding Sell}" Content="Продать" />
             <Button Command="{Binding Back}" Content="Назад" />
         </StackPanel>
-        
+
         <StackPanel Spacing="20">
             <TextBox Text="{Binding LastName}"
                      Watermark="Фамилия" />
-            
+
             <TextBox Text="{Binding FirstName}"
                      Watermark="Имя" />
-            
+
             <NumericUpDown Value="{Binding TicketCount}"
                            Minimum="1"
-                           Maximum="100"
+                           Maximum="{Binding MaximumTickets}"
+                           ClipValueToMinMax="True"
                            Increment="1"
-                           Watermark="Количество билетов"/>
+                           Watermark="Количество билетов" />
         </StackPanel>
     </DockPanel>
 </UserControl>

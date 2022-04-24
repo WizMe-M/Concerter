@@ -11,7 +11,6 @@ namespace Concerter.Models
 {
     public class Ticket
     {
-        public int Id { get; set; }
         public string SecondName { get; set; } = null!;
         public string FirstName { get; set; } = null!;
         public int Amount { get; set; }
@@ -19,10 +18,12 @@ namespace Concerter.Models
 
         public virtual Event Event { get; set; } = null!;
 
-        public static async Task<IEnumerable<Ticket>> GetClients(Event e)
+        public static async Task<IEnumerable<Ticket>> GetClients(int id)
         {
             await using var context = new EP_02_01Context();
-            var tickets = context.Tickets.Where(ticket => ticket.EventId == e.Id);
+            var tickets = context.Tickets
+                .Where(ticket => ticket.EventId == id)
+                .OrderBy(ticket => ticket.SecondName );
             return tickets.ToArray();
         }
 
@@ -30,7 +31,10 @@ namespace Concerter.Models
         {
             using var context = new EP_02_01Context();
 
-            var ticket = context.Tickets.FirstOrDefault(t => t.Id == Id);
+            var ticket = context.Tickets.FirstOrDefault(
+                t => t.FirstName == FirstName
+                     && t.SecondName == SecondName
+                     && t.EventId == EventId);
             if (ticket is null)
             {
                 MessageBoxManager.GetMessageBoxStandardWindow("Ошибка!",
@@ -52,12 +56,14 @@ namespace Concerter.Models
             context.SaveChanges();
         }
 
-        public static void Sell(string firstName, string lastName, int ticketCount)
+        public static void Sell(int id, string firstName, string lastName, int ticketCount)
         {
             using var context = new EP_02_01Context();
 
             var search = context.Tickets.FirstOrDefault(
-                t => t.FirstName == firstName && t.SecondName == lastName);
+                t => t.FirstName == firstName
+                     && t.SecondName == lastName
+                     && t.EventId == id);
 
             if (search is not null)
             {
@@ -68,6 +74,7 @@ namespace Concerter.Models
             {
                 var ticket = new Ticket
                 {
+                    EventId = id,
                     FirstName = firstName,
                     SecondName = lastName,
                     Amount = ticketCount

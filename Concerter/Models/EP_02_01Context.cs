@@ -230,8 +230,6 @@ namespace Concerter.Models
             {
                 entity.ToTable("tickets");
 
-                entity.Property(e => e.Id).HasColumnName("id");
-
                 entity.Property(e => e.Amount).HasColumnName("amount");
 
                 entity.Property(e => e.EventId).HasColumnName("event_id");
@@ -244,6 +242,8 @@ namespace Concerter.Models
                     .HasMaxLength(30)
                     .HasColumnName("second_name");
 
+                entity.HasKey(e => new { e.SecondName, e.FirstName, e.EventId });
+                
                 entity.HasOne(d => d.Event)
                     .WithMany(p => p.Tickets)
                     .HasForeignKey(d => d.EventId)

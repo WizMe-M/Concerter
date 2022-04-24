@@ -9,8 +9,8 @@ namespace Concerter.ViewModels;
 
 public class ReturnTicketsViewModel : ViewModelBase
 {
-    private readonly Event _event;
     private int _hiddenCount;
+    private readonly int _id;
 
     /// <summary>
     /// Для отображения в предпросмотре View
@@ -44,7 +44,7 @@ public class ReturnTicketsViewModel : ViewModelBase
 
         var canSell = this.WhenAnyValue(
             model => model.SelectedClient,
-            selector: ticket => ticket is not null);
+            selector: client => client is not null);
 
         Return = ReactiveCommand.Create(() =>
         {
@@ -53,10 +53,7 @@ public class ReturnTicketsViewModel : ViewModelBase
             FillComboBox();
         }, canSell);
 
-        Back = ReactiveCommand.Create(() =>
-        {
-            MainWindowViewModel.Window.Content = new EventInfoViewModel(_event);
-        });
+        Back = ReactiveCommand.Create(() => { MainWindowViewModel.Window.Content = new EventInfoViewModel(_id); });
 
         //init
         IsAllTickets = true;
@@ -66,17 +63,17 @@ public class ReturnTicketsViewModel : ViewModelBase
         {
             new()
             {
-                Id = 1,
                 SecondName = "Иванов",
                 FirstName = "Иван",
-                Amount = 10
+                Amount = 10,
+                EventId = 1
             }
         };
     }
 
-    public ReturnTicketsViewModel(Event e) : this()
+    public ReturnTicketsViewModel(int id) : this()
     {
-        _event = e;
+        _id = id;
         FillComboBox();
     }
 
@@ -101,7 +98,7 @@ public class ReturnTicketsViewModel : ViewModelBase
     private async void FillComboBox()
     {
         Clients.Clear();
-        var clients = await Ticket.GetClients(_event);
+        var clients = await Ticket.GetClients(_id);
         foreach (var client in clients)
         {
             Clients.Add(client);

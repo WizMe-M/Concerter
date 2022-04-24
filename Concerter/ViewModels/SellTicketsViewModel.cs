@@ -1,5 +1,4 @@
-﻿using System;
-using System.Reactive;
+﻿using System.Reactive;
 using Concerter.Models;
 using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
@@ -8,7 +7,7 @@ namespace Concerter.ViewModels;
 
 public class SellTicketsViewModel : ViewModelBase
 {
-    private readonly Event _event;
+    private readonly int _id;
 
     /// <summary>
     /// Для отображения в предпросмотре View
@@ -21,28 +20,27 @@ public class SellTicketsViewModel : ViewModelBase
             (firstName, lastName) =>
                 !string.IsNullOrWhiteSpace(firstName) &&
                 !string.IsNullOrWhiteSpace(lastName));
-        
+
         FirstName = "Иван";
         LastName = "Иванов";
         TicketCount = 1;
-        
+        MaximumTickets = 100;
+
         Sell = ReactiveCommand.Create(() =>
         {
-            Ticket.Sell(FirstName, LastName, TicketCount);
+            Ticket.Sell(_id, FirstName, LastName, TicketCount);
             FirstName = "";
             LastName = "";
             TicketCount = 1;
         }, canSell);
 
-        Back = ReactiveCommand.Create(() =>
-        {
-            MainWindowViewModel.Window.Content = new EventInfoViewModel(_event);
-        });
+        Back = ReactiveCommand.Create(() => { MainWindowViewModel.Window.Content = new EventInfoViewModel(_id); });
     }
 
-    public SellTicketsViewModel(Event e) : this()
+    public SellTicketsViewModel(int id, int countLeftTickets) : this()
     {
-        _event = e;
+        _id = id;
+        MaximumTickets = countLeftTickets;
     }
 
     [Reactive]
@@ -53,6 +51,9 @@ public class SellTicketsViewModel : ViewModelBase
 
     [Reactive]
     public int TicketCount { get; set; }
+
+    [Reactive]
+    public int MaximumTickets { get; set; }
 
     public ReactiveCommand<Unit, Unit> Sell { get; }
 

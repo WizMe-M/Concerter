@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Concerter.Models;
 using ReactiveUI.Fody.Helpers;
 
@@ -17,6 +18,11 @@ public class EventTicketsViewModel : ViewModelBase
     public EventTicketsViewModel()
     {
         EventList = new EventListViewModel(Event.GetEvents());
+    }
+
+    public EventTicketsViewModel(DateOnly date)
+    {
+        EventList = new EventListViewModel(Event.GetEvents(), date);
     }
 
     [Reactive]

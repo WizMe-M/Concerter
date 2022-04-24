@@ -18,7 +18,7 @@
 
     <DockPanel>
         <StackPanel DockPanel.Dock="Top" Orientation="Vertical" Margin="10">
-            <TextBlock Text="{Binding EventName}"  FontSize="28" FontWeight="DemiBold"/>
+            <TextBlock Text="{Binding EventName}" FontSize="28" FontWeight="DemiBold" />
             <TextBlock Text="{Binding Genre, StringFormat={}Жанр: {0}}" />
             <TextBlock Text="{Binding Cost, StringFormat={}Стоимость: {0} руб.}" />
         </StackPanel>
@@ -28,8 +28,8 @@
                        Margin="10"
                        HorizontalAlignment="Right">
                 <TextBlock.Text>
-                    <MultiBinding StringFormat="{}Пройдёт {0:d} в &quot;{1}&quot; &#x0a;по адресу: {2}">
-                        <Binding Path="EventDateAndTime" />
+                    <MultiBinding StringFormat="{}Пройдёт в {0} &#x0a;&quot;{1}&quot; по адресу: {2}">
+                        <Binding Path="Time" />
                         <Binding Path="CultureBuilding" />
                         <Binding Path="Address" />
                     </MultiBinding>
