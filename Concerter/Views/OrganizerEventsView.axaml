@@ -1,0 +1,47 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:Concerter.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="1000" d:DesignHeight="700"
+             x:Class="Concerter.Views.OrganizerEventTicketsView">
+    <Design.DataContext>
+        <vm:OrganizerEventTicketsViewModel />
+    </Design.DataContext>
+
+    <DockPanel Margin="20">
+        <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" Spacing="20"
+                    HorizontalAlignment="Left" Margin="20">
+            <Button Content="Меню" />
+            <Button Content="Добавить мероприятие" />
+        </StackPanel>
+        <UniformGrid DockPanel.Dock="Top" Rows="1" Columns="2">
+            <StackPanel Spacing="10">
+                <StackPanel Orientation="Horizontal">
+                    <TextBox />
+                    <Button Content="x" Width="50" Height="50" FontSize="20"
+                            HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Spacing="15">
+                    <ComboBox Height="50" Width="200" />
+                    <Viewbox Height="50">
+                        <StackPanel>
+                            <RadioButton Content="По ↓" GroupName="Sort" IsChecked="True" />
+                            <RadioButton Content="По ↑" GroupName="Sort" />
+                        </StackPanel>
+                    </Viewbox>
+                </StackPanel>
+            </StackPanel>
+
+            <Grid ColumnDefinitions="* * *" RowDefinitions="* *">
+                <ComboBox Grid.Column="0" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <ComboBox Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <ComboBox Grid.Column="2" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <ComboBox Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <ComboBox Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <ComboBox Grid.Column="2" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" />
+            </Grid>
+        </UniformGrid>
+        <ContentControl Content="{Binding EventList}" />
+    </DockPanel>
+</UserControl>

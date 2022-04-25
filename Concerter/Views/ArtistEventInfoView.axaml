@@ -1,0 +1,63 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:Concerter.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="1200" d:DesignHeight="450"
+             x:Class="Concerter.Views.ArtistEventInfoView">
+    <Design.DataContext>
+        <vm:ArtistEventInfoViewModel />
+    </Design.DataContext>
+
+    <UserControl.Styles>
+        <Style Selector="TextBlock">
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="FontSize" Value="18" />
+        </Style>
+    </UserControl.Styles>
+
+    <DockPanel Margin="40 0">
+        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Spacing="20" Margin="20 ">
+            <TextBlock Text="{Binding Name}" FontSize="20" FontWeight="Medium" />
+            <TextBlock Text="{Binding Impresario, StringFormat={}Импресарио: {0}}" />
+            <TextBlock Text="{Binding Price, StringFormat={}Стоимость: {0}}" />
+        </StackPanel>
+
+        <DockPanel DockPanel.Dock="Bottom">
+            <Panel DockPanel.Dock="Right" Height="300" Width="450">
+                <ItemsControl Items="{Binding Artists}" Margin="30 10"
+                              BorderBrush="Black" BorderThickness="2" Background="LightGray">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <UniformGrid Rows="10" />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock HorizontalAlignment="Left" Margin="5">
+                                <TextBlock.Text>
+                                    <MultiBinding StringFormat="{}{0} {1} {2}">
+                                        <Binding Path="LastName" />
+                                        <Binding Path="FirstName" />
+                                        <Binding Path="MiddleName" />
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+                <TextBlock Text="Список артистов пуст"
+                           IsVisible="{Binding !Artists.Count}"
+                           HorizontalAlignment="Center" VerticalAlignment="Center" />
+            </Panel>
+
+            <UniformGrid Rows="3" Columns="1" Height="200" Margin="20 0">
+                <TextBlock Text="{Binding CulturalBinding}" />
+                <TextBlock Text="{Binding Address}" TextWrapping="Wrap" />
+                <Button Content="Назад" HorizontalAlignment="Left" />
+            </UniformGrid>
+        </DockPanel>
+
+        <TextBlock Text="{Binding Description}" TextWrapping="Wrap" />
+    </DockPanel>
+</UserControl>

@@ -17,7 +17,6 @@ namespace Concerter.Models
         {
         }
 
-        public virtual DbSet<Category> Categories { get; set; } = null!;
         public virtual DbSet<CulturalBuilding> CulturalBuildings { get; set; } = null!;
         public virtual DbSet<Event> Events { get; set; } = null!;
         public virtual DbSet<Genre> Genres { get; set; } = null!;
@@ -39,20 +38,6 @@ namespace Concerter.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Category>(entity =>
-            {
-                entity.ToTable("categories");
-
-                entity.HasIndex(e => e.Name, "uq_categories_name")
-                    .IsUnique();
-
-                entity.Property(e => e.Id).HasColumnName("id");
-
-                entity.Property(e => e.Name)
-                    .HasMaxLength(20)
-                    .HasColumnName("name");
-            });
-
             modelBuilder.Entity<CulturalBuilding>(entity =>
             {
                 entity.ToTable("cultural_buildings");
@@ -68,17 +53,9 @@ namespace Concerter.Models
 
                 entity.Property(e => e.Capacity).HasColumnName("capacity");
 
-                entity.Property(e => e.CategoryId).HasColumnName("category_id");
-
                 entity.Property(e => e.Name)
                     .HasMaxLength(20)
                     .HasColumnName("name");
-
-                entity.HasOne(d => d.Category)
-                    .WithMany(p => p.CulturalBuildings)
-                    .HasForeignKey(d => d.CategoryId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("fk_cultural_buildings_category_id");
             });
 
             modelBuilder.Entity<Event>(entity =>

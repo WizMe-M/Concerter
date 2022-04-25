@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="clr-namespace:Concerter.ViewModels"
              xmlns:conv="clr-namespace:Concerter.Converters"
-             mc:Ignorable="d" d:DesignWidth="600" d:DesignHeight="200"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="200"
              x:Class="Concerter.Views.HeaderView">
 
     <Design.DataContext>

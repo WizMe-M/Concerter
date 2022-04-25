@@ -1,0 +1,47 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:Concerter.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="1200" d:DesignHeight="450"
+             x:Class="Concerter.Views.EventInfoView">
+    <Design.DataContext>
+        <vm:EventInfoViewModel />
+    </Design.DataContext>
+
+    <UserControl.Styles>
+        <Style Selector="TextBlock">
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="FontSize" Value="18" />
+        </Style>
+    </UserControl.Styles>
+
+    <DockPanel Margin="10">
+        <UniformGrid DockPanel.Dock="Bottom" Rows="1" Columns="3">
+            <Button Content="Продать билеты" Command="{Binding SellTickets}" />
+            <Button Content="Вернуть билеты" Command="{Binding ReturnTickets}" />
+            <Button Content="Назад" Command="{Binding Back}" />
+        </UniformGrid>
+
+        <StackPanel Margin="50" Spacing="30">
+            <StackPanel Spacing="20">
+                <StackPanel Orientation="Horizontal" Spacing="50">
+                    <TextBlock Text="{Binding Name}" FontSize="26" FontWeight="Black" />
+                    <TextBlock Text="{Binding Price, StringFormat={}Стоимость: {0}}" FontWeight="Medium" />
+                    <TextBlock Text="{Binding CountLeftTickets, StringFormat={}Осталось билетов: {0}}"
+                               FontWeight="Medium" />
+                </StackPanel>
+            </StackPanel>
+            <TextBlock Text="{Binding Description}" FontSize="14" TextWrapping="Wrap"
+                       Margin="0 20" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
+            <TextBlock FontSize="16" FontWeight="Medium" TextWrapping="Wrap">
+                <TextBlock.Text>
+                    <MultiBinding StringFormat="{}{0} по адресу {1}">
+                        <Binding Path="CulturalBinding" />
+                        <Binding Path="Address" />
+                    </MultiBinding>
+                </TextBlock.Text>
+            </TextBlock>
+        </StackPanel>
+    </DockPanel>
+</UserControl>

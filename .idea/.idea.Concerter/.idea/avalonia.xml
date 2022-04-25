@@ -8,8 +8,19 @@
         <entry key="Concerter/Styles/ComboBoxStyles.axaml" value="Concerter/Concerter.csproj" />
         <entry key="Concerter/Styles/NumericUpDownStyles.axaml" value="Concerter/Concerter.csproj" />
         <entry key="Concerter/Styles/TextBoxStyles.axaml" value="Concerter/Concerter.csproj" />
+        <entry key="Concerter/ViewModels/GenresView.axaml" value="Concerter/Concerter.csproj" />
+        <entry key="Concerter/Views/AddEventView.axaml" value="Concerter/Concerter.csproj" />
+        <entry key="Concerter/Views/AllUserView.axaml" value="Concerter/Concerter.csproj" />
+        <entry key="Concerter/Views/AppointArtistsView.axaml" value="Concerter/Concerter.csproj" />
+        <entry key="Concerter/Views/ArtistEventInfoView.axaml" value="Concerter/Concerter.csproj" />
+        <entry key="Concerter/Views/ArtistMyEventsView.axaml" value="Concerter/Concerter.csproj" />
+        <entry key="Concerter/Views/AssignArtistsView.axaml" value="Concerter/Concerter.csproj" />
+        <entry key="Concerter/Views/AssignImpresarioView.axaml" value="Concerter/Concerter.csproj" />
         <entry key="Concerter/Views/AuthorizationView.axaml" value="Concerter/Concerter.csproj" />
+        <entry key="Concerter/Views/CashierEventInfoView.axaml" value="Concerter/Concerter.csproj" />
+        <entry key="Concerter/Views/CashierEventTicketsView.axaml" value="Concerter/Concerter.csproj" />
         <entry key="Concerter/Views/ChangePasswordView.axaml" value="Concerter/Concerter.csproj" />
+        <entry key="Concerter/Views/CulturalBuildingsView.axaml" value="Concerter/Concerter.csproj" />
         <entry key="Concerter/Views/DialogErrorWindow.axaml" value="Concerter/Concerter.csproj" />
         <entry key="Concerter/Views/EventInfoView.axaml" value="Concerter/Concerter.csproj" />
         <entry key="Concerter/Views/EventList.axaml" value="Concerter/Concerter.csproj" />
@@ -17,14 +28,25 @@
         <entry key="Concerter/Views/EventTickets.axaml" value="Concerter/Concerter.csproj" />
         <entry key="Concerter/Views/EventTicketsView.axaml" value="Concerter/Concerter.csproj" />
         <entry key="Concerter/Views/EventView.axaml" value="Concerter/Concerter.csproj" />
+        <entry key="Concerter/Views/ExportSellDataView.axaml" value="Concerter/Concerter.csproj" />
+        <entry key="Concerter/Views/GenresView.axaml" value="Concerter/Concerter.csproj" />
         <entry key="Concerter/Views/HeaderView.axaml" value="Concerter/Concerter.csproj" />
+        <entry key="Concerter/Views/ImpresarioEventInfoView.axaml" value="Concerter/Concerter.csproj" />
+        <entry key="Concerter/Views/ImpresarioMyEventsView.axaml" value="Concerter/Concerter.csproj" />
         <entry key="Concerter/Views/MainWindow.axaml" value="Concerter/Concerter.csproj" />
         <entry key="Concerter/Views/MyEventView.axaml" value="Concerter/Concerter.csproj" />
         <entry key="Concerter/Views/MyEventsView.axaml" value="Concerter/Concerter.csproj" />
         <entry key="Concerter/Views/MyProfileView.axaml" value="Concerter/Concerter.csproj" />
+        <entry key="Concerter/Views/MyRewardsView.axaml" value="Concerter/Concerter.csproj" />
         <entry key="Concerter/Views/OrganizerEventInfoView.axaml" value="Concerter/Concerter.csproj" />
+        <entry key="Concerter/Views/OrganizerEventTicketsView.axaml" value="Concerter/Concerter.csproj" />
+        <entry key="Concerter/Views/OrganizerEventsView.axaml" value="Concerter/Concerter.csproj" />
+        <entry key="Concerter/Views/OrganizerMenuView.axaml" value="Concerter/Concerter.csproj" />
+        <entry key="Concerter/Views/RegisterView.axaml" value="Concerter/Concerter.csproj" />
         <entry key="Concerter/Views/ReturnTicketsView.axaml" value="Concerter/Concerter.csproj" />
+        <entry key="Concerter/Views/RewardArtistsView.axaml" value="Concerter/Concerter.csproj" />
         <entry key="Concerter/Views/SellTicketsView.axaml" value="Concerter/Concerter.csproj" />
+        <entry key="Concerter/Views/UserProfileView.axaml" value="Concerter/Concerter.csproj" />
       </map>
     </option>
   </component>

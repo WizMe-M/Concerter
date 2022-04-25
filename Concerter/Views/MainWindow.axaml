@@ -8,24 +8,15 @@
         xmlns:converters="clr-namespace:Concerter.Converters"
         mc:Ignorable="d" d:DesignWidth="500" d:DesignHeight="400"
         x:Class="Concerter.Views.MainWindow"
-        Width="1600"
-        Height="900"
-        Icon="/Assets/avalonia-logo.ico"
-        Title="Concerter"
-        WindowState="Maximized"
-        WindowStartupLocation="CenterScreen">
+        Width="1600" Height="900"
+        Icon="/Assets/avalonia-logo.ico" Title="Concerter"
+        WindowState="Maximized" WindowStartupLocation="CenterScreen">
     <Window.DataContext>
         <vm:MainWindowViewModel />
     </Window.DataContext>
 
-    <Panel>
-        <DockPanel Margin="40">
-            <ContentControl 
-                Content="{Binding Header}"
-                DockPanel.Dock="Top" />
-            
-            <ContentControl 
-                Content="{Binding Content}" />
-        </DockPanel>
-    </Panel>
+    <DockPanel Margin="40">
+        <ContentControl DockPanel.Dock="Top" Content="{Binding Header}" />
+        <ContentControl Content="{Binding Content}" />
+    </DockPanel>
 </Window>

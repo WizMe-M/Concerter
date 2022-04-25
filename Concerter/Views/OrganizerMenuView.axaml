@@ -1,0 +1,32 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:Concerter.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="600" d:DesignHeight="600"
+             x:Class="Concerter.Views.OrganizerMenuView">
+    <Design.DataContext>
+        <vm:OrganizerMenuViewModel />
+    </Design.DataContext>
+
+    <UserControl.Styles>
+        <Style Selector="Button">
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="Width" Value="250" />
+            <Setter Property="Height" Value="40" />
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="FontWeight" Value="Medium" />
+        </Style>
+    </UserControl.Styles>
+
+    <Grid Width="550" Height="400" ColumnDefinitions="* *" RowDefinitions="* * *"
+          HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Button Grid.Column="0" Grid.Row="0" VerticalAlignment="Bottom" Content="Мероприятия" />
+        <Button Grid.Column="0" Grid.Row="1" Content="Пользователи" />
+        <Button Grid.Column="1" Grid.Row="0" VerticalAlignment="Bottom" Content="Кульурные сооружения" />
+        <Button Grid.Column="1" Grid.Row="1" Content="Жанры" />
+        <Button Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" VerticalAlignment="Top" Content="Экспорт" />
+    </Grid>
+</UserControl>

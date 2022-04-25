@@ -1,0 +1,41 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:Concerter.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="1000" d:DesignHeight="700"
+             x:Class="Concerter.Views.AllUserView">
+    <Design.DataContext>
+        <vm:AllUserViewModel />
+    </Design.DataContext>
+    <Panel Margin="200">
+        <Button Content="Меню" HorizontalAlignment="Left" VerticalAlignment="Top" />
+        <Button Content="Зарегистрировать пользователя" HorizontalAlignment="Right" VerticalAlignment="Top" />
+
+        <ListBox Items="{Binding Users}" Margin="0 50">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <DockPanel>
+                        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Spacing="20">
+                            <TextBlock Text="{Binding Id, StringFormat={}ID: {0};}" />
+                            <TextBlock Text="{Binding Email, StringFormat={}E-mail: {0};}" />
+                            <TextBlock>
+                                <TextBlock.Text>
+                                    <MultiBinding StringFormat="{}{1} {0} {2}">
+                                        <Binding Path="FirstName" />
+                                        <Binding Path="LastName" />
+                                        <Binding Path="MiddleName" />
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
+                        </StackPanel>
+                        <StackPanel VerticalAlignment="Top" Spacing="10" Margin="0 20">
+                            <TextBlock Text="{Binding Role.Name, FallbackValue='Роль отсутствует'}" />
+                            <TextBlock Text="{Binding Password, StringFormat={}Пароль: {0}}" />
+                        </StackPanel>
+                    </DockPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </Panel>
+</UserControl>

@@ -3,9 +3,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="clr-namespace:Concerter.ViewModels"
-             mc:Ignorable="d"
-             x:Class="Concerter.Views.MyProfileView"
-             Width="600" Height="300" Margin="50">
+             mc:Ignorable="d" d:DesignHeight="900" d:DesignWidth="1600"
+             x:Class="Concerter.Views.MyProfileView">
     <Design.DataContext>
         <vm:MyProfileViewModel />
     </Design.DataContext>
@@ -20,50 +19,41 @@
         </Style>
     </UserControl.Styles>
 
-    <Grid RowDefinitions="* * * *" ColumnDefinitions="* * *" Margin="20">
+    <Grid RowDefinitions="* * *" ColumnDefinitions="* *" Width="800" Height="400">
 
         <TextBlock Text="{Binding Email, StringFormat={}Эл. почта: {0}}"
-                   Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" />
+                   Grid.Column="0" Grid.Row="0" />
 
         <TextBlock IsVisible="{Binding !EditMode}"
-                   Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3">
+                   Grid.Column="1" Grid.Row="0">
             <TextBlock.Text>
-                <MultiBinding StringFormat="{}{0} {1} {2}">
-                    <Binding Path="LastName" />
+                <MultiBinding StringFormat="{}{1} {0} {2}">
                     <Binding Path="FirstName" />
+                    <Binding Path="LastName" />
                     <Binding Path="MiddleName" />
                 </MultiBinding>
             </TextBlock.Text>
         </TextBlock>
 
-        <StackPanel Grid.Column="0" Grid.Row="1" Spacing="10"
-                    Grid.ColumnSpan="3" Orientation="Horizontal"
+        <StackPanel Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2"
+                    Spacing="10" Orientation="Horizontal" HorizontalAlignment="Right"
                     IsVisible="{Binding EditMode}">
-            <TextBox Text="{Binding LastName}"
-                     Watermark="Фамилия" />
-            <TextBox Text="{Binding FirstName}"
-                     Watermark="Имя" />
-            <TextBox Text="{Binding MiddleName}"
-                     Watermark="Отчество" />
+            <TextBox Text="{Binding LastName}" Watermark="Фамилия" />
+            <TextBox Text="{Binding FirstName}" Watermark="Имя" />
+            <TextBox Text="{Binding MiddleName}" Watermark="Отчество" />
         </StackPanel>
 
-        <TextBlock Text="{Binding Password}"
-                   Grid.Column="0" Grid.Row="2"
-                   HorizontalAlignment="Right" />
+        <TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding Password}" />
 
-        <Button Command="{Binding ChangePassword}"
-                Content="Сменить пароль" HorizontalAlignment="Right"
-                Grid.Column="1" Grid.Row="2"
-                Margin="20 0" />
+        <Button Grid.Column="1" Grid.Row="1" Content="Сменить пароль"
+                HorizontalAlignment="Left" Command="{Binding ChangePassword}" />
 
         <Button Command="{Binding SwitchEditMode}"
                 Content="{Binding EditOrSaveText}"
-                Grid.Column="2" Grid.Row="3" />
+                Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" />
 
-        <Button Command="{Binding Back}"
-                Content="Назад" HorizontalAlignment="Right"
-                Grid.Column="1" Grid.Row="3"
-                Margin="20 0" />
+        <Button Command="{Binding Back}" Content="Назад"
+                Grid.Column="0" Grid.Row="2" HorizontalAlignment="Left" />
 
     </Grid>
 </UserControl>

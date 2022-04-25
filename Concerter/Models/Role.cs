@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 namespace Concerter.Models
 {
@@ -25,6 +28,13 @@ namespace Concerter.Models
                 4 => RoleAccess.Organizer,
                 _ => throw new ArgumentOutOfRangeException($"User's role's id ({roleId}) was outside range [1,4]")
             };
+        }
+
+        public static IEnumerable<Role> GetRoles()
+        {
+            using var context = new EP_02_01Context();
+            context.Roles.Load();
+            return context.Roles.ToArray();
         }
     }
 }

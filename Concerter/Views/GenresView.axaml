@@ -1,0 +1,31 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:Concerter.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="1600" d:DesignHeight="700"
+             x:Class="Concerter.Views.GenresView">
+
+    <Design.DataContext>
+        <vm:GenresViewModel />
+    </Design.DataContext>
+
+    <DockPanel Margin="100">
+        <Grid DockPanel.Dock="Top" ColumnDefinitions="* * *" RowDefinitions="* *" Height="120" Margin="0 40">
+            <Button Grid.Column="0" Grid.Row="0" Content="Меню" />
+            <TextBox Grid.Column="1" Grid.Row="0" Watermark="Название жанра" />
+            <Button Grid.Column="0" Grid.Row="1" Content="Добавить" />
+            <Button Grid.Column="1" Grid.Row="1" Content="Изменить" />
+            <Button Grid.Column="2" Grid.Row="1" Content="Удалить" />
+        </Grid>
+        <ListBox Items="{Binding Genres}" SelectedItem="{Binding Selected}"
+                 Margin="0 20 50 0">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock DockPanel.Dock="Top" FontSize="20" Text="{Binding Path=Name}">
+                    </TextBlock>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </DockPanel>
+</UserControl>

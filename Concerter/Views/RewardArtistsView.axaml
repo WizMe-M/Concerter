@@ -1,0 +1,72 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:Concerter.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="1200" d:DesignHeight="450"
+             x:Class="Concerter.Views.RewardArtistsView">
+    <Design.DataContext>
+        <vm:RewardArtistsViewModel />
+    </Design.DataContext>
+
+    <UserControl.Styles>
+        <Style Selector="TextBlock">
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="FontSize" Value="18" />
+        </Style>
+        <Style Selector="NumericUpDown">
+            <Setter Property="Width" Value="150" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="Minimum" Value="150" />
+            <Setter Property="Maximum" Value="1000000000" />
+            <Setter Property="Increment" Value="50" />
+            <Setter Property="ClipValueToMinMax" Value="True" />
+        </Style>
+    </UserControl.Styles>
+
+    <DockPanel Margin="50">
+        <ListBox DockPanel.Dock="Right" Items="{Binding Artists}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock FontSize="20">
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat="{}{0} {1} {2}">
+                                <Binding Path="LastName" />
+                                <Binding Path="FirstName" />
+                                <Binding Path="MiddleName" />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+        <Button DockPanel.Dock="Top" Content="Назад" HorizontalAlignment="Left" />
+
+        <Button DockPanel.Dock="Bottom" Content="Сохранить" HorizontalAlignment="Left" />
+
+        <Grid ColumnDefinitions="0.75* 0.5* *" RowDefinitions="* * *" Margin="10 50"
+              Width="800" Height="200" HorizontalAlignment="Left" VerticalAlignment="Top">
+
+            <TextBlock Grid.Column="0" Grid.Row="0"
+                       Text="{Binding ChosenFirst,
+            StringFormat={}1. {0}, TargetNullValue='1. Не выбран артист'}" />
+
+            <TextBlock Grid.Column="0" Grid.Row="1"
+                       Text="{Binding ChosenSecond, 
+                       StringFormat={}2. {0}, TargetNullValue='2. Не выбран артист'}" />
+
+            <TextBlock Grid.Column="0" Grid.Row="2"
+                       Text="{Binding ChosenThird,
+                       StringFormat={}3. {0}, TargetNullValue='3. Не выбран артист'}" />
+
+            <NumericUpDown Grid.Column="1" Grid.Row="0" Value="{Binding PrizeFirst}" />
+            <NumericUpDown Grid.Column="1" Grid.Row="1" Value="{Binding PrizeSecond}" />
+            <NumericUpDown Grid.Column="1" Grid.Row="2" Value="{Binding PrizeThird}" />
+
+            <Button Grid.Column="2" Grid.Row="0" Content="Назначить" />
+            <Button Grid.Column="2" Grid.Row="1" Content="Назначить" />
+            <Button Grid.Column="2" Grid.Row="2" Content="Назначить" />
+        </Grid>
+    </DockPanel>
+</UserControl>

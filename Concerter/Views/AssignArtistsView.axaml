@@ -1,0 +1,45 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:Concerter.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="1600" d:DesignHeight="450"
+             x:Class="Concerter.Views.AppointArtistsView">
+
+    <Design.DataContext>
+        <vm:AppointArtistsViewModel />
+    </Design.DataContext>
+
+    <UserControl.Styles>
+        <Style Selector="ListBox">
+            <Setter Property="Width" Value="500" />
+            <Setter Property="VerticalAlignment" Value="Stretch" />
+            <Setter Property="Margin" Value="10" />
+            <Setter Property="ItemTemplate">
+                <!-- ReSharper disable once Xaml.RedundantResource -->
+                <DataTemplate>
+                    <TextBlock FontSize="20">
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat="{}{0} {1} {2}">
+                                <Binding Path="LastName" />
+                                <Binding Path="FirstName" />
+                                <Binding Path="MiddleName" />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                </DataTemplate>
+            </Setter>
+        </Style>
+    </UserControl.Styles>
+
+    <DockPanel Margin="40">
+        <ListBox DockPanel.Dock="Right" Items="{Binding NotAppointedArtists}" />
+        <ListBox DockPanel.Dock="Right" Items="{Binding AppointedArtists}" />
+        <StackPanel DockPanel.Dock="Bottom" Spacing="20" Margin="10" HorizontalAlignment="Left">
+            <Button Content="Назначить артистов" />
+            <Button Content="Назад" />
+        </StackPanel>
+        <TextBlock Text="{Binding Name}" VerticalAlignment="Top"
+                   FontWeight="Bold" FontSize="24" TextWrapping="Wrap" Margin="0 20"/>
+    </DockPanel>
+</UserControl>

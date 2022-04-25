@@ -1,0 +1,31 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:Concerter.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="600"
+             x:Class="Concerter.Views.MyRewardsView">
+    <Design.DataContext>
+        <vm:MyRewardsViewModel />
+    </Design.DataContext>
+
+    <Panel>
+        <Button Content="Назад" Command="{Binding Back}"
+                Margin="100 40" VerticalAlignment="Top" HorizontalAlignment="Left" />
+        <ItemsControl Margin="100" BorderThickness="2" BorderBrush="Black"
+                      Items="{Binding Rewards}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Margin="10">
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat="{}Место: {0}; Призовые: {1}">
+                                <Binding Path="Place" />
+                                <Binding Path="Prize" />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+    </Panel>
+</UserControl>

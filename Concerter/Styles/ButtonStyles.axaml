@@ -2,9 +2,9 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <Design.PreviewWith>
         <UniformGrid Rows="1" Columns="3">
-            <Button Content="Press me!"/>
-            <Button Content="Press me!"/>
-            <Button Content="Press me!"/>
+            <Button Content="Press me!" />
+            <Button Content="Press me!" />
+            <Button Content="Press me!" />
         </UniformGrid>
     </Design.PreviewWith>
 
@@ -12,5 +12,12 @@
         <Setter Property="HorizontalAlignment" Value="Stretch" />
         <Setter Property="Margin" Value="10 0" />
         <Setter Property="HorizontalContentAlignment" Value="Center" />
+    </Style>
+
+    <Style Selector="Button:not(NumericUpDown Button),Button:not(ComboBox Button),Button:not(ToggleSwitch Button)">
+        <Setter Property="Width" Value="300" />
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="FontSize" Value="20" />
     </Style>
 </Styles>

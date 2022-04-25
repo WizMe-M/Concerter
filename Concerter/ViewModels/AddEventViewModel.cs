@@ -1,18 +1,14 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-using System.Reactive;
 using Concerter.Models;
-using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
 
 namespace Concerter.ViewModels;
 
-public class OrganizerEventInfoViewModel : ViewModelBase
+public class AddEventViewModel : ViewModelBase
 {
-    public OrganizerEventInfoViewModel()
+    public AddEventViewModel()
     {
-        //init
-        IsEditMode = false;
         SelectedDate = DateTime.Today;
         Name = "День рождения Иоганна Себастьяна Баха";
         Price = 200;
@@ -32,14 +28,6 @@ public class OrganizerEventInfoViewModel : ViewModelBase
             Name = "Бар \"Грибная поляна\"",
             Address = "353051, Ульяновская область, город Кашира, ул. Ломоносова, 59",
             Capacity = 200
-        });
-        ToggleEditMode = ReactiveCommand.Create(() =>
-        {
-            IsEditMode = !IsEditMode;
-            if (IsEditMode == false)
-            {
-                // Event.SaveChanges();
-            }
         });
     }
 
@@ -66,9 +54,4 @@ public class OrganizerEventInfoViewModel : ViewModelBase
 
     [Reactive]
     public string Description { get; set; }
-
-    [Reactive]
-    public bool IsEditMode{ get ; set; }
-    
-    public ReactiveCommand<Unit, Unit> ToggleEditMode { get; }
 }
