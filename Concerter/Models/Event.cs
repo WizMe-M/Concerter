@@ -85,5 +85,14 @@ namespace Concerter.Models
             context.Events.Add(this);
             context.SaveChanges();
         }
+
+        public static void AssignImpresario(int eventId, int impresarioId)
+        {
+            using var context = new EP_02_01Context();
+            var e = context.Events.FirstOrDefault(e => e.Id == eventId)!;
+            e.ImpresarioId = impresarioId;
+            context.Events.Update(e);
+            context.SaveChanges();
+        }
     }
 }

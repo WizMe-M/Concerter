@@ -10,7 +10,8 @@
     </Design.DataContext>
 
     <DockPanel Margin="300 200">
-        <ListBox DockPanel.Dock="Right" Items="{Binding Impresarios}">
+        <ListBox DockPanel.Dock="Right" Items="{Binding Impresarios}" 
+                 SelectedItem="{Binding Selected}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <TextBlock FontSize="20">
@@ -27,8 +28,8 @@
         </ListBox>
         <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" Spacing="20" Margin="10"
                     HorizontalAlignment="Left">
-            <Button Content="Назначить импресарио" />
-            <Button Content="Назад" />
+            <Button Content="Назначить импресарио" Command="{Binding AssignImpresario}"/>
+            <Button Content="Назад" Command="{Binding Back}"/>
         </StackPanel>
         <TextBlock Text="{Binding Name}" VerticalAlignment="Top"
                    FontWeight="Bold" FontSize="24" TextWrapping="Wrap" Margin="0 20" />

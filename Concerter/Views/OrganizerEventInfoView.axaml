@@ -30,8 +30,8 @@
                         SelectedDate="{Binding SelectedDate}"
                         IsEnabled="{Binding IsEditMode}" />
             <TimePicker SelectedTime="{Binding SelectedTime}"
-                        Header="Время проведения" MinuteIncrement="15" 
-                        IsEnabled="{Binding IsEditMode}"/>
+                        Header="Время проведения" MinuteIncrement="15"
+                        IsEnabled="{Binding IsEditMode}" />
         </StackPanel>
 
         <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" Spacing="50" Margin="100 20">
@@ -40,9 +40,9 @@
         </StackPanel>
 
         <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" Spacing="50" Margin="100 20">
-            <Button Content="Назначить импресарио" />
+            <Button Content="Назначить импресарио" Command="{Binding AssignImpresario}" />
             <Button Content="Изменить мероприятие" Command="{Binding ChangeOrSave}" />
-            <Button Content="Удалить мероприятие" Command="{Binding Delete}"/>
+            <Button Content="Удалить мероприятие" Command="{Binding Delete}" />
         </StackPanel>
 
         <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" Spacing="20" Margin="100 0">

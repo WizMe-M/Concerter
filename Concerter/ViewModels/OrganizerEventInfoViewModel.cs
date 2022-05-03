@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-using System.Reactive;
 using System.Windows.Input;
 using Concerter.Models;
 using ReactiveUI;
@@ -81,6 +80,11 @@ public class OrganizerEventInfoViewModel : ViewModelBase
         Description = e.Description;
         SelectedGenre = e.EventGenre;
         SelectedBuilding = e.EventCulturalBuilding;
+
+        AssignImpresario = ReactiveCommand.Create(() =>
+        {
+            MainWindowViewModel.Instance.Content = new AssignImpresarioViewModel(e);
+        });
     }
 
     [Reactive]
