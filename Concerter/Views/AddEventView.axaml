@@ -20,17 +20,19 @@
     
     <DockPanel>
         <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Spacing="20" Margin="100 50 50 0">
-            <TextBox Text="{Binding Name}" Width="400"/>
-            <NumericUpDown Watermark="Стоимость билета" Value="{Binding Price}"
+            <TextBox Watermark="Название" Text="{Binding Name}" Width="400"/>
+            <NumericUpDown Watermark="Стоимость билета" Value="{Binding Cost}"
                            ClipValueToMinMax="True" ParsingNumberStyle="Integer"
                            Increment="50" Minimum="150" Maximum="1000000000"/>
             <DatePicker SelectedDate="{Binding SelectedDate}" 
                         Header=" Дата проведения" MinYear="01.01.2022" />
+            <TimePicker SelectedTime="{Binding SelectedTime}"
+                        Header="Время проведения" MinuteIncrement="15" />
         </StackPanel>
 
         <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" Spacing="50" Margin="100 50 0 50">
-            <Button Content="Назад" />
-            <Button Content="Добавить" />
+            <Button Content="Назад" Command="{Binding Back}"/>
+            <Button Content="Добавить" Command="{Binding Add}"/>
         </StackPanel>
 
         <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" Spacing="20" Margin="100 0">
@@ -65,6 +67,6 @@
         <TextBox Text="{Binding Description}" Width="1400" Height="300"
                  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
                  HorizontalContentAlignment="Left" VerticalContentAlignment="Top"
-                 TextWrapping="Wrap" FontSize="20"/>
+                 TextWrapping="Wrap" FontSize="20" Watermark="Описание мероприятия"/>
     </DockPanel>
 </UserControl>

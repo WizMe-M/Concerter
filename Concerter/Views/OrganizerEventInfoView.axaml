@@ -21,14 +21,17 @@
     <DockPanel>
         <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Spacing="20" Margin="100 50 50 0">
             <TextBox Text="{Binding Name}" Width="400"
-                     IsReadOnly="{Binding !IsEditMode}" />
-            <NumericUpDown Watermark="Стоимость билета" Value="{Binding Price}"
+                     IsEnabled="{Binding IsEditMode}" />
+            <NumericUpDown Watermark="Стоимость билета" Value="{Binding Cost}"
                            ClipValueToMinMax="True" ParsingNumberStyle="Integer"
                            Increment="50" Minimum="150" Maximum="1000000000"
-                           IsReadOnly="{Binding !IsEditMode}" />
+                           IsEnabled="{Binding IsEditMode}" />
             <DatePicker Header=" Дата проведения" MinYear="01.01.2022"
                         SelectedDate="{Binding SelectedDate}"
                         IsEnabled="{Binding IsEditMode}" />
+            <TimePicker SelectedTime="{Binding SelectedTime}"
+                        Header="Время проведения" MinuteIncrement="15" 
+                        IsEnabled="{Binding IsEditMode}"/>
         </StackPanel>
 
         <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" Spacing="50" Margin="100 20">
@@ -77,6 +80,6 @@
                  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
                  HorizontalContentAlignment="Left" VerticalContentAlignment="Top"
                  TextWrapping="Wrap" FontSize="20"
-                 IsReadOnly="{Binding !IsEditMode}" />
+                 IsEnabled="{Binding IsEditMode}" />
     </DockPanel>
 </UserControl>

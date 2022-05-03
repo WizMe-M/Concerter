@@ -34,8 +34,8 @@ public class OrganizerEventsViewModel : ViewModelBase
             "Стоимость"
         });
 
-        this.WhenAnyValue(model => model.SearchText)
-            .Throttle(TimeSpan.FromMilliseconds(400))
+        this.WhenAnyValue(model => model.SearchText, s => s?.Trim().ToLower())
+            .Throttle(TimeSpan.FromMilliseconds(700))
             .ObserveOn(RxApp.MainThreadScheduler)
             .Subscribe(Find!);
 
@@ -75,7 +75,7 @@ public class OrganizerEventsViewModel : ViewModelBase
             if (i <= _foundIndex) continue;
 
             var e = events[i];
-            if (e.Name.Contains(s))
+            if (e.Name.ToLower().Contains(s))
             {
                 found = e;
                 break;
@@ -84,13 +84,13 @@ public class OrganizerEventsViewModel : ViewModelBase
 
         if (found is null)
         {
-            MessageBoxManager.GetMessageBoxStandardWindow("",
+            MessageBoxManager.GetMessageBoxStandardWindow("Ошибка",
                 "Не найдено мероприятие с таким названием").Show();
             _foundIndex = -1;
             return;
         }
 
-        EventList.SelectedEvent = found;
+        EventList.Select(found);
     }
 
     [Reactive]

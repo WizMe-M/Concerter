@@ -78,5 +78,12 @@ namespace Concerter.Models
                 .Include(e => e.Status)
                 .FirstOrDefault(e => e.Id == id)!;
         }
+
+        public void Add()
+        {
+            using var context = new EP_02_01Context();
+            context.Events.Add(this);
+            context.SaveChanges();
+        }
     }
 }

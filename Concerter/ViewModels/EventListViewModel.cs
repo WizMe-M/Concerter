@@ -13,6 +13,8 @@ namespace Concerter.ViewModels;
 
 public class EventListViewModel : ViewModelBase
 {
+    private bool isReadOnly = false;
+    
     private readonly ObservableAsPropertyHelper<IEnumerable<EventViewModel>> _selectedDateEvents;
     public IEnumerable<EventViewModel> SelectedDateEvents => _selectedDateEvents.Value;
 
@@ -70,13 +72,13 @@ public class EventListViewModel : ViewModelBase
             }),
             RoleAccess.Organizer => ReactiveCommand.Create<EventViewModel, Unit>(model =>
             {
-                if (model is null) return default;
+                if (isReadOnly || model is null) return default;
                 MainWindowViewModel.Instance.Content = new OrganizerEventInfoViewModel(model);
                 return default;
             })
         };
     }
-    
+
     public ObservableCollection<EventViewModel> AllEvents { get; } = new();
 
     [Reactive]
@@ -88,4 +90,12 @@ public class EventListViewModel : ViewModelBase
     public ReactiveCommand<Unit, Unit> Previous { get; }
     public ReactiveCommand<Unit, Unit> Next { get; }
     public ICommand ItemClick { get; set; }
+
+
+    public void Select(EventViewModel found)
+    {
+        isReadOnly = true;
+        SelectedEvent = found;
+        isReadOnly = false;
+    }
 }

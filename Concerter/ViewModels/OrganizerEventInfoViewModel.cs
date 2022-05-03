@@ -17,7 +17,7 @@ public class OrganizerEventInfoViewModel : ViewModelBase
         var canToggle = this.WhenAnyValue(
             model => model.Name,
             model => model.Description,
-            model => model.Price,
+            model => model.Cost,
             model => model.SelectedDate,
             model => model.SelectedBuilding,
             model => model.SelectedGenre,
@@ -35,7 +35,7 @@ public class OrganizerEventInfoViewModel : ViewModelBase
         IsEditMode = false;
         SelectedDate = DateTime.Today;
         Name = "День рождения Иоганна Себастьяна Баха";
-        Price = 200;
+        Cost = 200;
         Description =
             @"За последний год проект ЛСП успел неоднократно взлететь в топ-чарты, выпустить космические релизы и отыграть концерты по всей стране, включая два столичных солдаута в MMD.
 
@@ -49,7 +49,7 @@ public class OrganizerEventInfoViewModel : ViewModelBase
             if (IsEditMode == false)
             {
                 _event.Name = Name;
-                _event.Cost = Price;
+                _event.Cost = Cost;
                 _event.Date = DateOnly.FromDateTime(SelectedDate.Date);
                 _event.Description = Description;
                 _event.GenreId = SelectedGenre!.Id;
@@ -75,8 +75,9 @@ public class OrganizerEventInfoViewModel : ViewModelBase
     {
         _event = Event.Find(e.Id);
         Name = e.Name;
-        Price = e.Cost;
+        Cost = e.Cost;
         SelectedDate = new DateTimeOffset(e.Date.ToDateTime(new TimeOnly()));
+        SelectedTime = e.Time.ToTimeSpan();
         Description = e.Description;
         SelectedGenre = e.EventGenre;
         SelectedBuilding = e.EventCulturalBuilding;
@@ -86,10 +87,13 @@ public class OrganizerEventInfoViewModel : ViewModelBase
     public DateTimeOffset SelectedDate { get; set; }
 
     [Reactive]
+    public TimeSpan SelectedTime { get; set; }
+    
+    [Reactive]
     public string Name { get; set; }
 
     [Reactive]
-    public decimal Price { get; set; }
+    public decimal Cost { get; set; }
 
     public ObservableCollection<Genre> Genres { get; }
     public ObservableCollection<CulturalBuilding> CulturalBuildings { get; }
