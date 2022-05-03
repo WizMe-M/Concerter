@@ -53,7 +53,7 @@ public class ReturnTicketsViewModel : ViewModelBase
             FillComboBox();
         }, canSell);
 
-        Back = ReactiveCommand.Create(() => { MainWindowViewModel.Window.Content = new EventInfoViewModel(_id); });
+        Back = ReactiveCommand.Create(() => { MainWindowViewModel.Instance.Content = new EventInfoViewModel(_id); });
 
         //init
         IsAllTickets = true;

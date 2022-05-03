@@ -16,6 +16,20 @@ namespace Concerter.Models
         public int Id { get; set; }
         public string Name { get; set; } = null!;
 
+        public string AlterName
+        {
+            get
+            {
+                return Id switch
+                {
+                    1 => "Кассир",
+                    2 => "Артист",
+                    3 => "Импресарио",
+                    4 => "Организатор"
+                };
+            }
+        }
+
         public virtual ICollection<User> Users { get; set; }
         
         public static RoleAccess AuthorizeUser(int? roleId)

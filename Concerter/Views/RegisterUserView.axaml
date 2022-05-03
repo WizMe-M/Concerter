@@ -12,26 +12,28 @@
 
     <DockPanel Margin="100">
         <Panel DockPanel.Dock="Bottom" Margin="0 50">
-            <Button Content="Назад" HorizontalAlignment="Left" />
-            <Button Content="Зарегистрировать" HorizontalAlignment="Right" />
+            <Button Content="Назад" Command="{Binding Back}" HorizontalAlignment="Left" />
+            <Button Content="Зарегистрировать" Command="{Binding Register}" HorizontalAlignment="Right" />
         </Panel>
         <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" Spacing="10" Margin="0 20">
-            <ComboBox PlaceholderText="Выберите роль" Items="{Binding Roles}">
+            <ComboBox PlaceholderText="Выберите роль" Items="{Binding Roles}"
+                      SelectedItem="{Binding SelectedRole}">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
-                        <TextBlock Text="{Binding Name}" />
+                        <TextBlock Text="{Binding AlterName}" />
                     </DataTemplate>
                 </ComboBox.ItemTemplate>
             </ComboBox>
-            <TextBox />
+            <TextBox Watermark="Пароль" Text="{Binding Password}" />
         </StackPanel>
 
         <StackPanel DockPanel.Dock="Left" Spacing="10">
-            <TextBox />
-            <TextBox />
-            <TextBox />
+            <TextBox Watermark="Фамилия" Text="{Binding LastName}" />
+            <TextBox Watermark="Имя" Text="{Binding FirstName}" />
+            <TextBox Watermark="Отчество" Text="{Binding MiddleName}" />
         </StackPanel>
-        
-        <TextBox VerticalAlignment="Top" HorizontalAlignment="Left" Margin="50 0"/>
+
+        <TextBox Watermark="Е-mail" Text="{Binding Email}"
+                 VerticalAlignment="Top" HorizontalAlignment="Left" Margin="50 0" />
     </DockPanel>
 </UserControl>

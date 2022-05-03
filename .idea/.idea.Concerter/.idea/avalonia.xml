@@ -42,6 +42,7 @@
         <entry key="Concerter/Views/OrganizerEventTicketsView.axaml" value="Concerter/Concerter.csproj" />
         <entry key="Concerter/Views/OrganizerEventsView.axaml" value="Concerter/Concerter.csproj" />
         <entry key="Concerter/Views/OrganizerMenuView.axaml" value="Concerter/Concerter.csproj" />
+        <entry key="Concerter/Views/RegisterUserView.axaml" value="Concerter/Concerter.csproj" />
         <entry key="Concerter/Views/RegisterView.axaml" value="Concerter/Concerter.csproj" />
         <entry key="Concerter/Views/ReturnTicketsView.axaml" value="Concerter/Concerter.csproj" />
         <entry key="Concerter/Views/RewardArtistsView.axaml" value="Concerter/Concerter.csproj" />

@@ -8,8 +8,8 @@ namespace Concerter.ViewModels;
 public class MyProfileViewModel : ViewModelBase
 {
     private readonly ObservableAsPropertyHelper<string> _editOrSaveText;
-    private readonly User _userProfile;
-
+    private readonly User _user = null!;
+    
     /// <summary>
     /// Для отображения в предпросмотре View
     /// </summary>
@@ -21,40 +21,37 @@ public class MyProfileViewModel : ViewModelBase
 
         EditMode = true;
         EditMode = false;
-        _userProfile = new User();
         Email = "test@mail.ru";
         LastName = "Иванов";
         FirstName = "Иван";
         MiddleName = "Иванович";
         Password = "P@ssw0rd";
 
-        ChangePassword = ReactiveCommand.Create(() => 
-            new ChangePasswordViewModel(_userProfile));
+        ChangePassword = ReactiveCommand.Create(() => new ChangePasswordViewModel(_user));
         SwitchEditMode = ReactiveCommand.CreateFromTask(async () =>
         {
             EditMode = !EditMode;
             if (!EditMode)
             {
-                _userProfile.FirstName = FirstName;
-                _userProfile.LastName = LastName;
-                _userProfile.MiddleName = MiddleName;
+                _user.FirstName = FirstName;
+                _user.LastName = LastName;
+                _user.MiddleName = MiddleName;
 
-                await _userProfile.SaveAsync();
+                await _user.SaveAsync();
             }
         });
-        Back = ReactiveCommand.Create(() => _userProfile);
+        Back = ReactiveCommand.Create(() => _user);
     }
 
     public MyProfileViewModel(User user) : this()
     {
+        _user = user;
         EditMode = false;
-
-        _userProfile = user;
-        Email = _userProfile.Email;
-        LastName = _userProfile.LastName;
-        FirstName = _userProfile.FirstName;
-        MiddleName = _userProfile.MiddleName;
-        Password = _userProfile.Password;
+        Email = user.Email;
+        LastName = user.LastName;
+        FirstName = user.FirstName;
+        MiddleName = user.MiddleName;
+        Password = user.Password;
     }
 
     [Reactive]

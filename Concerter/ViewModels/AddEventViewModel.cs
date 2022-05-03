@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Windows.Input;
 using Concerter.Models;
+using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
 
 namespace Concerter.ViewModels;
@@ -17,17 +19,11 @@ public class AddEventViewModel : ViewModelBase
 
 Смертельно романтичный бэнд снова вывернет наизнанку твою душу на сцене Music Media Dome, продолжив традицию больших весенних концертов.";
 
-        Genres.Add(new Genre { Name = "Рок'н'ролл" });
-        Genres.Add(new Genre { Name = "Джаз" });
-        Genres.Add(new Genre { Name = "Глэм-метал" });
-        Genres.Add(new Genre { Name = "Панк-рок" });
-        Genres.Add(new Genre { Name = "Гранж" });
-
-        CulturalBuildings.Add(new CulturalBuilding
+        Genres = new ObservableCollection<Genre>(Genre.GetGenres());
+        CulturalBuildings = new ObservableCollection<CulturalBuilding>(CulturalBuilding.GetBuildings());
+        Back = ReactiveCommand.Create(() =>
         {
-            Name = "Бар \"Грибная поляна\"",
-            Address = "353051, Ульяновская область, город Кашира, ул. Ломоносова, 59",
-            Capacity = 200
+            MainWindowViewModel.Instance.Content = new OrganizerEventsViewModel();
         });
     }
 
@@ -40,13 +36,13 @@ public class AddEventViewModel : ViewModelBase
     [Reactive]
     public decimal Price { get; set; }
 
-    public ObservableCollection<Genre> Genres { get; } = new();
+    public ObservableCollection<Genre> Genres { get; }
 
 
     [Reactive]
     public Genre SelectedGenre { get; set; }
 
-    public ObservableCollection<CulturalBuilding> CulturalBuildings { get; } = new();
+    public ObservableCollection<CulturalBuilding> CulturalBuildings { get; }
 
 
     [Reactive]
@@ -54,4 +50,8 @@ public class AddEventViewModel : ViewModelBase
 
     [Reactive]
     public string Description { get; set; }
+
+    public ICommand Back { get; }
+
+    public ICommand Add { get; }
 }

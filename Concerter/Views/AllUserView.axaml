@@ -8,11 +8,13 @@
     <Design.DataContext>
         <vm:AllUserViewModel />
     </Design.DataContext>
-    <Panel Margin="200">
-        <Button Content="Меню" HorizontalAlignment="Left" VerticalAlignment="Top" />
-        <Button Content="Зарегистрировать пользователя" HorizontalAlignment="Right" VerticalAlignment="Top" />
+    
+    <Panel Margin="100 20">
+        <Button Content="Меню" Command="{Binding Menu}" HorizontalAlignment="Left" VerticalAlignment="Top" />
+        <Button Content="Зарегистрировать пользователя" Command="{Binding Register}" HorizontalAlignment="Right" VerticalAlignment="Top" Width="400"/>
 
-        <ListBox Items="{Binding Users}" Margin="0 50">
+        <ListBox Items="{Binding Users}" 
+                 SelectedItem="{Binding SelectedUser}" Margin="0 50">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <DockPanel>
@@ -30,7 +32,7 @@
                             </TextBlock>
                         </StackPanel>
                         <StackPanel VerticalAlignment="Top" Spacing="10" Margin="0 20">
-                            <TextBlock Text="{Binding Role.Name, FallbackValue='Роль отсутствует'}" />
+                            <TextBlock Text="{Binding Role.AlterName, FallbackValue='Роль отсутствует'}" />
                             <TextBlock Text="{Binding Password, StringFormat={}Пароль: {0}}" />
                         </StackPanel>
                     </DockPanel>

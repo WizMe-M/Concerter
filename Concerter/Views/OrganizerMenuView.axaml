@@ -23,10 +23,10 @@
 
     <Grid Width="550" Height="400" ColumnDefinitions="* *" RowDefinitions="* * *"
           HorizontalAlignment="Center" VerticalAlignment="Center">
-        <Button Grid.Column="0" Grid.Row="0" VerticalAlignment="Bottom" Content="Мероприятия" />
-        <Button Grid.Column="0" Grid.Row="1" Content="Пользователи" />
-        <Button Grid.Column="1" Grid.Row="0" VerticalAlignment="Bottom" Content="Кульурные сооружения" />
-        <Button Grid.Column="1" Grid.Row="1" Content="Жанры" />
-        <Button Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" VerticalAlignment="Top" Content="Экспорт" />
+        <Button Grid.Column="0" Grid.Row="0" VerticalAlignment="Bottom" Content="Мероприятия" Command="{Binding OpenEvents}"/>
+        <Button Grid.Column="0" Grid.Row="1" Content="Пользователи" Command="{Binding OpenUsers}" />
+        <Button Grid.Column="1" Grid.Row="0" VerticalAlignment="Bottom" Content="Кульурные сооружения" Command="{Binding OpenBuildings}" />
+        <Button Grid.Column="1" Grid.Row="1" Content="Жанры" Command="{Binding OpenGenres}" />
+        <Button Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" VerticalAlignment="Top" Content="Экспорт" Command="{Binding OpenExport}" />
     </Grid>
 </UserControl>

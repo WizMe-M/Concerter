@@ -25,17 +25,17 @@ public class EventInfoViewModel : ViewModelBase
             sold => _maxCapacity - sold > 0);
 
         SellTickets = ReactiveCommand.Create(
-            () => { MainWindowViewModel.Window.Content = new SellTicketsViewModel(_id, CountLeftTickets); },
+            () => { MainWindowViewModel.Instance.Content = new SellTicketsViewModel(_id, CountLeftTickets); },
             canSell);
 
         ReturnTickets = ReactiveCommand.Create(
-            () => { MainWindowViewModel.Window.Content = new ReturnTicketsViewModel(_id); },
+            () => { MainWindowViewModel.Instance.Content = new ReturnTicketsViewModel(_id); },
             canReturn);
 
         Back = ReactiveCommand.CreateFromTask(async () =>
         {
             var events = await Event.GetEventsAsync();
-            MainWindowViewModel.Window.Content = new EventTicketsViewModel(_date);
+            MainWindowViewModel.Instance.Content = new EventTicketsViewModel(_date);
         });
 
         //init

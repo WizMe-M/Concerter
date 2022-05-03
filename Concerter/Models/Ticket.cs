@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Avalonia;
@@ -6,6 +7,7 @@ using Avalonia.Controls.ApplicationLifetimes;
 using Concerter.Views;
 using MessageBox.Avalonia;
 using MessageBox.Avalonia.Enums;
+using Microsoft.EntityFrameworkCore;
 
 namespace Concerter.Models
 {
@@ -84,6 +86,16 @@ namespace Concerter.Models
             }
 
             context.SaveChanges();
+        }
+
+        public static IEnumerable<Ticket> Select(DateOnly start, DateOnly end)
+        {
+            using var context = new EP_02_01Context();
+            var tickets = context.Tickets
+                .Include(ticket => ticket.Event)
+                .Where(ticket => ticket.Event.Date >= start && ticket.Event.Date <= end)
+                .ToArray();
+            return tickets;
         }
     }
 }

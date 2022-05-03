@@ -41,17 +41,42 @@ namespace Concerter.Models
                 .Include(@event => @event.Genre)
                 .Include(@event => @event.CulturalBuilding)
                 .LoadAsync();
-            return await context.Events.ToListAsync();
+            return await context.Events.ToArrayAsync();
         }
 
         public static IEnumerable<Event> GetEvents()
         {
             using var context = new EP_02_01Context();
             context.Events
-                .Include(@event => @event.Genre)
-                .Include(@event => @event.CulturalBuilding)
+                .Include(e => e.Genre)
+                .Include(e => e.CulturalBuilding)
                 .Load();
-            return context.Events.ToList();
+            return context.Events.ToArray();
+        }
+
+        public async Task SaveAsync()
+        {
+            await using var context = new EP_02_01Context();
+            context.Events.Update(this);
+            await context.SaveChangesAsync();
+        }
+
+        public async Task Delete()
+        {
+            await using var context = new EP_02_01Context();
+            context.Events.Remove(this);
+            await context.SaveChangesAsync();
+        }
+
+        public static Event Find(int id)
+        {
+            using var context = new EP_02_01Context();
+            return context.Events
+                .Include(e => e.Genre)
+                .Include(e => e.CulturalBuilding)
+                .Include(e => e.Type)
+                .Include(e => e.Status)
+                .FirstOrDefault(e => e.Id == id)!;
         }
     }
 }

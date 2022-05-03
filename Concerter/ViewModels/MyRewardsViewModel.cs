@@ -10,7 +10,7 @@ public class MyRewardsViewModel : ViewModelBase
     public MyRewardsViewModel()
     {
         Rewards.Add(new Giving { Place = 1, Prize = 1000 });
-        Back = ReactiveCommand.Create(() => { MainWindowViewModel.Window.Content = new ArtistMyEventsViewModel();});
+        Back = ReactiveCommand.Create(() => { MainWindowViewModel.Instance.Content = new ArtistMyEventsViewModel();});
     }
 
     public ObservableCollection<Giving> Rewards { get; } = new();

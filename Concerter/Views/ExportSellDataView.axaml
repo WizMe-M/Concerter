@@ -2,8 +2,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:Concerter.ViewModels"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Concerter.Views.ExportSellDataView">
+    
+    <Design.DataContext>
+        <vm:ExportSellDataViewModel />
+    </Design.DataContext>
+    
     <UserControl.Styles>
         <Style Selector="Button">
             <Setter Property="HorizontalAlignment" Value="Center" />
@@ -12,10 +18,11 @@
             <Setter Property="HorizontalAlignment" Value="Center" />
         </Style>
     </UserControl.Styles>
+    
     <UniformGrid Rows="2" Columns="2" Width="800" Height="200">
-        <DatePicker />
-        <DatePicker />
-        <Button Content="Меню" />
-        <Button Content="Экспортировать" />
+        <DatePicker SelectedDate="{Binding DateStart}" />
+        <DatePicker SelectedDate="{Binding DateEnd}" />
+        <Button Content="Меню" Command="{Binding Menu}"/>
+        <Button Content="Экспортировать" Command="{Binding Export}" />
     </UniformGrid>
 </UserControl>

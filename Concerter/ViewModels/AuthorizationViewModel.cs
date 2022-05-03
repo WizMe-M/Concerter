@@ -22,7 +22,6 @@ public class AuthorizationViewModel : ViewModelBase
         Authorize = ReactiveCommand.CreateFromTask(async () =>
         {
             var user = await User.SearchAsync(Email!, Password!);
-            Debug.WriteLine($"Result search: user id is {user?.Id}");
             return user;
         }, canExecute);
     }

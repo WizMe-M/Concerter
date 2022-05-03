@@ -4,9 +4,9 @@ using Avalonia.Markup.Xaml;
 
 namespace Concerter.Views;
 
-public partial class OrganizerEventTicketsView : UserControl
+public partial class OrganizerEventsView : UserControl
 {
-    public OrganizerEventTicketsView()
+    public OrganizerEventsView()
     {
         InitializeComponent();
     }

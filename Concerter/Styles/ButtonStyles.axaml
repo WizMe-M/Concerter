@@ -14,7 +14,14 @@
         <Setter Property="HorizontalContentAlignment" Value="Center" />
     </Style>
 
-    <Style Selector="Button:not(NumericUpDown Button),Button:not(ComboBox Button),Button:not(ToggleSwitch Button)">
+    <Style Selector="Button:not(NumericUpDown Button),
+    Button:not(ComboBox Button),
+    Button:not(ToggleSwitch Button),
+    Button:not(DatePicker Button),
+    Button:not(DatePickerPresenter Button),
+    Button:not(Popup Button),
+    Button:not(Button#AcceptButton),
+    Button:not(Button#DismissButton)">
         <Setter Property="Width" Value="300" />
         <Setter Property="HorizontalAlignment" Value="Stretch" />
         <Setter Property="HorizontalContentAlignment" Value="Center" />

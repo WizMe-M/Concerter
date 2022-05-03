@@ -34,7 +34,7 @@ public class SellTicketsViewModel : ViewModelBase
             TicketCount = 1;
         }, canSell);
 
-        Back = ReactiveCommand.Create(() => { MainWindowViewModel.Window.Content = new EventInfoViewModel(_id); });
+        Back = ReactiveCommand.Create(() => { MainWindowViewModel.Instance.Content = new EventInfoViewModel(_id); });
     }
 
     public SellTicketsViewModel(int id, int countLeftTickets) : this()

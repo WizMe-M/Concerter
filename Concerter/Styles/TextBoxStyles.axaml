@@ -6,6 +6,7 @@
         </Border>
     </Design.PreviewWith>
 
+    <!-- , TextBox:not(Window:is(views|MsBoxStandardWindow) TextBox) -->
     <Style Selector="TextBox:not(NumericUpDown TextBox)">
         <Setter Property="Width" Value="300" />
         <Setter Property="Height" Value="50" />

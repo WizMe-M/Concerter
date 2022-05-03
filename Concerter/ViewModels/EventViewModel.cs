@@ -12,42 +12,46 @@ public class EventViewModel : ViewModelBase
     public EventViewModel()
     {
         Id = -1;
-        EventName = "Диана Арбенина и «Ночные снайперы»";
+        Name = "Диана Арбенина и «Ночные снайперы»";
         Description = "Встретим весну по-снайперски! 7 марта Диана Арбенина, группа \"Ночные Снайперы\" с большим" +
                       " электрическим концертом. Легенда рока, бескомпромиссная и влюбленная в дело своей жизни и " +
                       "армию своих поклонников. Способная обнять всех и заглянуть в глаза каждому! Дух рок-н-ролла, " +
                       "воплощенный Арбениной, изначально безграничный, но в ее исполнении подлинно свободный, " +
                       "балансирующий на грани нежности и неудержимости, испытает на прочность стены " +
                       "Adrenaline Stadium. Присоединяйтесь! ;)";
-        Genre = "Рок-н-Ролл";
+        GenreName = "Рок-н-Ролл";
         Cost = 200;
         Date = DateOnly.FromDateTime(DateTime.Today);
         Time = TimeOnly.FromDateTime(DateTime.Now);
-        CultureBuilding = "Adrenaline Stadium";
+        BuildingName = "Adrenaline Stadium";
         Address = "Москва, Ленинградский просп., 80, корп. 17";
     }
 
     public EventViewModel(Event e)
     {
         Id = e.Id;
-        EventName = e.Name;
+        Name = e.Name;
         Description = e.Description;
         Cost = e.Cost;
-        Genre = e.Genre.Name;
         Date = e.Date;
         Time = e.Time;
-        CultureBuilding = e.CulturalBuilding.Name;
-        Address = e.CulturalBuilding.Address;
+
+        EventGenre = e.Genre;
+        GenreName = EventGenre.Name;
+
+        EventCulturalBuilding = e.CulturalBuilding;
+        BuildingName = EventCulturalBuilding.Name;
+        Address = EventCulturalBuilding.Address;
     }
-    
+
     [Reactive]
     public int Id { get; set; }
 
     [Reactive]
-    public string EventName { get; set; }
+    public string Name { get; set; }
 
     [Reactive]
-    public string Genre { get; set; }
+    public string GenreName { get; set; }
 
     [Reactive]
     public decimal Cost { get; set; }
@@ -62,8 +66,11 @@ public class EventViewModel : ViewModelBase
     public TimeOnly Time { get; set; }
 
     [Reactive]
-    public string CultureBuilding { get; set; }
+    public string BuildingName { get; set; }
 
     [Reactive]
     public string Address { get; set; }
+
+    public Genre EventGenre { get; set; }
+    public CulturalBuilding EventCulturalBuilding { get; set; }
 }

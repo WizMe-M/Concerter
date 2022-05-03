@@ -10,7 +10,7 @@ namespace Concerter.ViewModels
     {
         public MainWindowViewModel()
         {
-            Window = this;
+            Instance = this;
             Header = new HeaderViewModel();
             Header.LogOut
                 .Subscribe(ShowAuthorization);
@@ -21,7 +21,7 @@ namespace Concerter.ViewModels
             ShowAuthorization(new AuthorizationViewModel());
         }
 
-        public static MainWindowViewModel Window { get; private set; }
+        public static MainWindowViewModel Instance { get; private set; }
 
         [Reactive]
         public HeaderViewModel Header { get; set; }
@@ -32,11 +32,7 @@ namespace Concerter.ViewModels
         private void ShowAuthorization(AuthorizationViewModel viewmodel)
         {
             viewmodel.Authorize
-                .Subscribe(async model =>
-                {
-                    Debug.WriteLine($"{model?.Id} - [{model?.Email} ~ {model?.Password}]");
-                    await AuthorizeAsync(model);
-                });
+                .Subscribe(async model => await AuthorizeAsync(model));
             Content = viewmodel;
         }
 
@@ -44,6 +40,7 @@ namespace Concerter.ViewModels
         {
             viewModel.ChangePassword
                 .Subscribe(ShowChangePassword);
+            
             viewModel.Back
                 .Subscribe(async user => await AuthorizeAsync(user));
             Content = viewModel;
@@ -75,6 +72,11 @@ namespace Concerter.ViewModels
                     var enumerable = await Event.GetEventsAsync();
                     Content = new EventTicketsViewModel(enumerable);
                     break;
+                case RoleAccess.Organizer:
+                    Content = new OrganizerMenuViewModel();
+                    break;
+                case RoleAccess.Artist:
+                case RoleAccess.Impresario:
                 default: throw new NotImplementedException();
             }
         }

@@ -3,7 +3,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="clr-namespace:Concerter.ViewModels"
-             mc:Ignorable="d" d:DesignWidth="1600" d:DesignHeight="900"
+             mc:Ignorable="d" d:DesignWidth="1600" d:DesignHeight="700"
              x:Class="Concerter.Views.AddEventView">
     <Design.DataContext>
         <vm:AddEventViewModel />
@@ -62,7 +62,7 @@
             </ComboBox>
         </StackPanel>
 
-        <TextBox Text="{Binding Description}" Width="1400" Height="500"
+        <TextBox Text="{Binding Description}" Width="1400" Height="300"
                  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
                  HorizontalContentAlignment="Left" VerticalContentAlignment="Top"
                  TextWrapping="Wrap" FontSize="20"/>

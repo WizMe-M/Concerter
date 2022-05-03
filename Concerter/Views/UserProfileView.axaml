@@ -12,28 +12,30 @@
 
     <DockPanel Margin="100">
         <Panel DockPanel.Dock="Bottom" Margin="0 50">
-            <Button Content="Назад" HorizontalAlignment="Left" />
-            <Button Content="Зарегистрировать" HorizontalAlignment="Right" />
+            <Button Content="Назад" Command="{Binding Back}" HorizontalAlignment="Left" />
+            <Button Content="Изменить" Command="{Binding ChangeOrSave}" HorizontalAlignment="Right" />
         </Panel>
         <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" Spacing="10" Margin="0 20">
-            <ComboBox PlaceholderText="Выберите роль" Items="{Binding Roles}">
+            <ComboBox PlaceholderText="Выберите роль" Items="{Binding Roles}"
+                      SelectedItem="{Binding SelectedRole, Mode=TwoWay}"
+                      IsEnabled="{Binding IsEditMode}">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
-                        <TextBlock Text="{Binding Name}" />
+                        <TextBlock Text="{Binding AlterName}" />
                     </DataTemplate>
                 </ComboBox.ItemTemplate>
             </ComboBox>
-            <TextBox />
+            <TextBox Watermark="Пароль" Text="{Binding Password}" IsEnabled="{Binding IsEditMode}" />
         </StackPanel>
 
         <StackPanel DockPanel.Dock="Left" Spacing="10">
-            <TextBox />
-            <TextBox />
-            <TextBox />
+            <TextBox Watermark="Фамилия" Text="{Binding LastName}" IsEnabled="{Binding IsEditMode}" />
+            <TextBox Watermark="Имя" Text="{Binding FirstName}" IsEnabled="{Binding IsEditMode}" />
+            <TextBox Watermark="Отчество" Text="{Binding MiddleName}" IsEnabled="{Binding IsEditMode}" />
         </StackPanel>
 
-        <ToggleSwitch DockPanel.Dock="Right" Content="Активирован" VerticalAlignment="Top"/>
-        
-        <TextBox VerticalAlignment="Top" HorizontalAlignment="Left" Margin="50 0" />
+        <TextBox Watermark="Email" Text="{Binding Email}"
+                 VerticalAlignment="Top" HorizontalAlignment="Left" Margin="50 0" 
+                 IsEnabled="{Binding IsEditMode}" />
     </DockPanel>
 </UserControl>
