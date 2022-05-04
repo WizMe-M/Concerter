@@ -306,7 +306,7 @@ namespace Concerter.Models
                 new Status { Id = 2, Name = "Набор" },
                 new Status { Id = 3, Name = "Проведение" },
                 new Status { Id = 4, Name = "Выплаты" },
-                new Status { Id = 4, Name = "Продажа" }
+                new Status { Id = 5, Name = "Продажа" }
             );
 
             modelBuilder.Entity<Type>().HasData(

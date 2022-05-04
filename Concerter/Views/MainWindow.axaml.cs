@@ -10,7 +10,9 @@ namespace Concerter.Views
         public MainWindow()
         {
             InitializeComponent();
+#if DEBUG
             this.AttachDevTools();
+#endif
             Window = this;
         }
 
@@ -18,7 +20,7 @@ namespace Concerter.Views
         {
             AvaloniaXamlLoader.Load(this);
         }
-        
+
         public static MainWindow Window { get; private set; } = null!;
     }
 }
