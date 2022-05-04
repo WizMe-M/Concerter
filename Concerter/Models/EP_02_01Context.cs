@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reactive;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
@@ -32,7 +33,8 @@ namespace Concerter.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=EP_02_01;Username=postgres;Password=password");
+                optionsBuilder.UseNpgsql(
+                    "Host=localhost;Port=5432;Database=EP_02_01;Username=postgres;Password=password");
             }
         }
 
@@ -188,6 +190,7 @@ namespace Concerter.Models
                     .HasMaxLength(35)
                     .HasColumnName("name");
             });
+            modelBuilder.Entity<Role>().Ignore(e => e.AlterName);
 
             modelBuilder.Entity<Status>(entity =>
             {
@@ -220,7 +223,7 @@ namespace Concerter.Models
                     .HasColumnName("second_name");
 
                 entity.HasKey(e => new { e.SecondName, e.FirstName, e.EventId });
-                
+
                 entity.HasOne(d => d.Event)
                     .WithMany(p => p.Tickets)
                     .HasForeignKey(d => d.EventId)
@@ -278,6 +281,38 @@ namespace Concerter.Models
                     .HasForeignKey(d => d.RoleId)
                     .HasConstraintName("fk_users_role_id");
             });
+
+            //initialize
+            modelBuilder.Entity<Role>().HasData(
+                new Role { Id = 1, Name = "cashier" },
+                new Role { Id = 2, Name = "artist" },
+                new Role { Id = 3, Name = "impresario" },
+                new Role { Id = 4, Name = "organizer" }
+            );
+
+            modelBuilder.Entity<User>().HasData(
+                new User
+                {
+                    Id = 1,
+                    Email = "org",
+                    Password = "P@ssw0rd",
+                    RoleId = 4,
+                    FirstName = "Иван",
+                    LastName = "Иванов"
+                });
+
+            modelBuilder.Entity<Status>().HasData(
+                new Status { Id = 1, Name = "Регистрация" },
+                new Status { Id = 2, Name = "Набор" },
+                new Status { Id = 3, Name = "Проведение" },
+                new Status { Id = 4, Name = "Выплаты" },
+                new Status { Id = 4, Name = "Продажа" }
+            );
+
+            modelBuilder.Entity<Type>().HasData(
+                new Type { Id = 1, Name = "Концерт" },
+                new Type { Id = 2, Name = "Конкурс" }
+            );
 
             OnModelCreatingPartial(modelBuilder);
         }
